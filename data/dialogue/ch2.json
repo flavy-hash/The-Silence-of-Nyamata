@@ -1,0 +1,247 @@
+{
+	"ch2_opening": [
+		{"speaker": "joseph", "text": "Emmanuel. Mama Beata has salt again. Go before it's gone."},
+		{"speaker": "emmanuel", "text": "Is that all, Papa?"},
+		{"speaker": "narrator", "text": "Joseph glances at the radio on its stool. It is switched off. It has been off for weeks."},
+		{"speaker": "joseph", "text": "No. People are saying things in the market that they would not have said a year ago. Listen to them. Listen carefully, to who says what, and to who stays quiet."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"I'll listen, Papa.\"", "goto": "home"},
+			{"text": "\"Why does it matter who says what?\"", "goto": "why"}
+		]},
+		{"id": "why", "speaker": "joseph", "text": "Because one day you may need to know who you can trust."},
+		{"id": "home", "speaker": "joseph", "text": "And come straight home before dark.",
+		 "do": [{"start_mission": "ch2_main"}], "end": true}
+	],
+
+	"ch2_joseph_day": [
+		{"speaker": "joseph", "text": "Salt, Emmanuel. And keep your ears open.", "end": true}
+	],
+
+	"ch2_joseph_home": [
+		{"speaker": "joseph", "text": "You're back. Good. Sit down, Emmanuel. We need to talk.",
+		 "do": [{"progress": "ch2_main:go_home"}], "end": true}
+	],
+
+	"ch2_beata": [
+		{"speaker": "narrator", "text": "The shop is half empty. Mama Beata speaks more quietly than she used to."},
+		{"speaker": "beata", "text": "Emmanuel. Come in. Here is your father's salt.", "do": [{"give_item": "salt"}]},
+		{"speaker": "emmanuel", "text": "The market is so quiet today."},
+		{"speaker": "beata", "text": "Some of my customers have stopped coming. Someone has been telling people which shops they should not buy from."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"Who would do that?\"", "goto": "who"},
+			{"text": "\"Are you all right, Mama Beata?\"", "goto": "ok", "do": [{"trust": "beata", "delta": 1}]}
+		]},
+		{"id": "who", "speaker": "beata", "text": "People who want neighbours to stop being neighbours. It starts with small things. Who you buy from. Who you greet.", "goto": "listen"},
+		{"id": "ok", "speaker": "beata", "text": "I am a shopkeeper. I am always all right. Mostly."},
+		{"id": "listen", "speaker": "beata", "text": "Your father asked you to listen, didn't he? Then listen. Bosco has his radio on at his stall all day. The teacher, Gasana, Claudine: everybody is talking, or trying very hard not to."},
+		{"speaker": "beata", "text": "And Emmanuel, listen more than you speak. These days, words travel.",
+		 "do": [{"progress": "ch2_main:buy_salt"}], "end": true}
+	],
+
+	"ch2_beata_default": [
+		{"speaker": "beata", "text": "Go carefully, Emmanuel. Greet your father for me.", "end": true}
+	],
+
+	"ch2_bosco": [
+		{"speaker": "narrator", "text": "Bosco's radio sits on his stall between the tomatoes and the onions, turned up loud."},
+		{"speaker": "radio", "text": "[The presenter speaks fast and angrily. He says that 'they' are plotting against ordinary people, and that everyone must be ready to defend themselves.]",
+		 "text_reduced": "[The radio broadcasts angry accusations.]"},
+		{"speaker": "bosco", "text": "You hear that? Every day it's the same. They say the enemy is already among us. Waiting."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"Who is 'the enemy', Bosco? The people you sell tomatoes to?\"", "goto": "challenge", "do": [{"set_flag": "ch2_challenged_bosco"}]},
+			{"text": "[Say nothing.]", "goto": "silent"}
+		]},
+		{"id": "challenge", "speaker": "bosco", "text": "I'm only repeating what the radio says. Everybody is saying it."},
+		{"speaker": "emmanuel", "text": "Everybody repeating something doesn't make it true."},
+		{"speaker": "bosco", "text": "You should be careful talking like that, Emmanuel. I'm only telling you because I know your father.", "goto": "end"},
+		{"id": "silent", "speaker": "narrator", "text": "Emmanuel says nothing. Bosco nods, as if silence were agreement, and turns the volume up."},
+		{"id": "end", "speaker": "narrator", "text": "Around the stall, a few people have stopped to listen. Others hurry past without looking up.",
+		 "do": [{"set_flag": "ch2_heard_bosco"}, {"progress": "ch2_main:listen"}], "end": true}
+	],
+
+	"ch2_bosco_default": [
+		{"speaker": "bosco", "text": "Buy something or move along, Emmanuel. I'm trying to listen.", "end": true}
+	],
+
+	"ch2_uwase": [
+		{"speaker": "uwase", "text": "Emmanuel. Have you seen the board? Someone has pinned a notice over the examination timetable."},
+		{"speaker": "uwase", "text": "The children come to school repeating what they hear on the radio. Words they don't even understand. Yesterday a boy told another boy he could not sit next to him."},
+		{"speaker": "emmanuel", "text": "What did you do?"},
+		{"speaker": "uwase", "text": "I told them what I have always told them. In this classroom there is only one kind of person: a pupil."},
+		{"speaker": "uwase", "text": "Some parents have complained. I will not change what I teach."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"That's brave, Madame.\"", "goto": "brave", "do": [{"trust": "uwase", "delta": 1}]},
+			{"text": "\"Please be careful.\"", "goto": "careful"}
+		]},
+		{"id": "brave", "speaker": "uwase", "text": "It is not bravery. It is my job. A teacher who repeats lies is not a teacher.", "goto": "end"},
+		{"id": "careful", "speaker": "uwase", "text": "Careful is what they want us to be. Careful, and quiet."},
+		{"id": "end", "speaker": "uwase", "text": "Think for yourself, Emmanuel. It is the one thing nobody can take from you.",
+		 "do": [{"set_flag": "ch2_heard_uwase"}, {"progress": "ch2_main:listen"}], "end": true}
+	],
+
+	"ch2_uwase_default": [
+		{"speaker": "uwase", "text": "Remember what I told you. Think for yourself.", "end": true}
+	],
+
+	"ch2_gasana": [
+		{"speaker": "gasana", "text": "Emmanuel. Sit with an old man for a moment."},
+		{"speaker": "gasana", "text": "Two men came by last week. From town, not from here. Very polite. They asked who lives in which house, and they wrote it all down in a little book."},
+		{"speaker": "emmanuel", "text": "Wrote what down?"},
+		{"speaker": "gasana", "text": "Names. Houses. Families."},
+		{"speaker": "gasana", "text": "Forty years I have lived on this hill. Nobody ever needed a book to know who their neighbours are."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"Did they say why?\"", "goto": "why"},
+			{"text": "\"Did you tell them anything?\"", "goto": "tell", "do": [{"trust": "gasana", "delta": 1}]}
+		]},
+		{"id": "why", "speaker": "gasana", "text": "They said it was for 'security'. Whose security, I wonder.", "goto": "end"},
+		{"id": "tell", "speaker": "gasana", "text": "I told them I am an old man with a very bad memory."},
+		{"id": "end", "speaker": "gasana", "text": "Someone is organising this, Emmanuel. Things like this do not happen by themselves.",
+		 "do": [{"set_flag": "ch2_heard_gasana"}, {"set_flag": "ch2_knows_names_listed"}, {"progress": "ch2_main:listen"}], "end": true}
+	],
+
+	"ch2_gasana_default": [
+		{"speaker": "gasana", "text": "My memory gets worse every day, Emmanuel. Very convenient.", "end": true}
+	],
+
+	"ch2_claudine": [
+		{"speaker": "claudine", "text": "Emmanuel."},
+		{"speaker": "claudine", "text": "My son still talks about the story you promised him.", "if": [{"flag": "ch1_promised_story"}]},
+		{"speaker": "claudine", "text": "Some of the other children told him he cannot play with them anymore. Because of what their parents hear on the radio."},
+		{"speaker": "claudine", "text": "He asked me what he did wrong. What do I tell a seven-year-old?"},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"Tell him he did nothing wrong. Nothing at all.\"", "goto": "nothing", "do": [{"trust": "claudine", "delta": 1}]},
+			{"text": "\"I'll talk to the children myself.\"", "goto": "talk",
+			 "do": [{"trust": "claudine", "delta": 1}, {"start_mission": "ch2_kids"}]}
+		]},
+		{"id": "nothing", "speaker": "claudine", "text": "I tell him that every night. It helps a little less every night.", "goto": "end"},
+		{"id": "talk", "speaker": "claudine", "text": "Would you? They listen to you. They always have."},
+		{"id": "end", "speaker": "claudine", "text": "Go carefully, Emmanuel.",
+		 "do": [{"set_flag": "ch2_heard_claudine"}, {"progress": "ch2_main:listen"}], "end": true}
+	],
+
+	"ch2_claudine_default": [
+		{"speaker": "claudine", "text": "Thank you for stopping. Not everyone stops anymore.", "end": true}
+	],
+
+	"ch2_notice": [
+		{"speaker": "narrator", "text": "A typed notice has been pinned to the board, right over the old examination timetable."},
+		{"speaker": "narrator", "text": "COMMUNITY MEETING. Saturday, at the trading centre. All young men are expected to attend. Absence will be noted."},
+		{"speaker": "emmanuel", "text": "\"Absence will be noted.\""},
+		{"speaker": "narrator", "text": "Someone has torn away half of the examination timetable to make room.",
+		 "do": [{"set_flag": "ch2_read_notice"}, {"progress": "ch2_main:read_notice"}], "end": true}
+	],
+
+	"ch2_aline_early": [
+		{"speaker": "aline", "text": "Emmanuel? Finish your father's errand first. I'll still be here.", "end": true}
+	],
+
+	"ch2_aline": [
+		{"speaker": "aline", "text": "You found me."},
+		{"speaker": "emmanuel", "text": "You always come up here when something is wrong."},
+		{"speaker": "aline", "text": "At the market today, a woman I have known since I was a baby looked straight through me. As if I wasn't there."},
+		{"speaker": "aline", "text": "My father says we should carry our identity cards with us at all times now. As if a card could explain who a person is."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"Your card never mattered to me. It never will.\"", "goto": "card",
+			 "do": [{"trust": "aline", "delta": 1}, {"set_flag": "ch2_reassured_aline"}]},
+			{"text": "\"I'm scared, Aline.\"", "goto": "scared", "do": [{"set_flag": "ch2_admitted_fear"}]}
+		]},
+		{"id": "card", "speaker": "aline", "text": "I know. That's why I came up here to wait for you.", "goto": "brother"},
+		{"id": "scared", "speaker": "aline", "text": "So am I. Being afraid is not the same as giving up. My mother taught me that."},
+		{"id": "brother", "speaker": "aline", "text": "My brother doesn't understand any of it. Yesterday he asked why some of the boys won't pass him the ball anymore."},
+		{"speaker": "emmanuel", "text": "What did you tell him?"},
+		{"speaker": "aline", "text": "That some people are listening to the wrong things."},
+		{"speaker": "aline", "text": "Emmanuel, Patrick was looking for you. He was with two men I've never seen before. He said he'd wait at the football field.",
+		 "do": [{"set_flag": "ch2_saw_aline"}, {"progress": "ch2_main:find_aline"}], "end": true}
+	],
+
+	"ch2_aline_after": [
+		{"speaker": "aline", "text": "Go and see what Patrick wants. And Emmanuel, be careful what you promise him.", "end": true}
+	],
+
+	"ch2_patrick_early": [
+		{"speaker": "patrick", "text": "Not now, Emmanuel. Later. We'll talk later.", "end": true}
+	],
+
+	"ch2_patrick": [
+		{"speaker": "patrick", "text": "Emmanuel. Finally."},
+		{"speaker": "emmanuel", "text": "Aline said you were looking for me. Who are those men?"},
+		{"speaker": "patrick", "text": "Friends. People who are finally organising things properly."},
+		{"speaker": "patrick", "text": "Things are changing. People are choosing sides. If you're not with us, they will consider you against us."},
+		{"speaker": "emmanuel", "text": "Aline is my friend. You know that."},
+		{"speaker": "patrick", "text": "Friendship won't protect you anymore."},
+		{"speaker": "emmanuel", "text": "Then we should be protecting one another, not turning on one another."},
+		{"speaker": "patrick", "text": "There's a meeting on Saturday at the trading centre. Everyone will see who comes. And who doesn't."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "[Refuse] \"I won't be there. Not on Saturday. Not ever.\"", "goto": "refuse",
+			 "do": [{"set_flag": "ch2_stance", "value": "refuse"}, {"trust": "patrick", "delta": -2}]},
+			{"text": "[Stay silent] Say nothing.", "goto": "silent",
+			 "do": [{"set_flag": "ch2_stance", "value": "silent"}, {"trust": "patrick", "delta": -1}]},
+			{"text": "[Pretend to go along] \"…All right. I'll think about it.\"", "goto": "pretend",
+			 "do": [{"set_flag": "ch2_stance", "value": "pretend"}, {"trust": "patrick", "delta": 1}]}
+		]},
+		{"id": "refuse", "speaker": "patrick", "text": "Then you've chosen. Remember that I tried to help you.", "goto": "end"},
+		{"id": "silent", "speaker": "narrator", "text": "Emmanuel says nothing. Patrick studies his face for a long moment."},
+		{"speaker": "patrick", "text": "Silence is an answer too. They will decide what it means.", "goto": "end"},
+		{"id": "pretend", "speaker": "narrator", "text": "The words feel wrong even as Emmanuel says them. Patrick claps him on the shoulder."},
+		{"speaker": "patrick", "text": "Good. That's smart. Smart people will be safe."},
+		{"id": "end", "speaker": "patrick", "text": "Go home, Emmanuel. It will be dark soon.",
+		 "do": [{"set_flag": "ch2_patrick_done"}, {"progress": "ch2_main:face_patrick"}], "end": true}
+	],
+
+	"ch2_patrick_after": [
+		{"speaker": "patrick", "text": "Go home, Emmanuel.", "end": true}
+	],
+
+	"ch2_didier": [
+		{"speaker": "didier", "text": "We're not playing today, Emmanuel."},
+		{"speaker": "didier", "text": "Kevin's father says we can't play with Eric and Grace anymore. Because of the radio."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"On this field, everyone plays. That's the rule.\"", "goto": "rule"},
+			{"text": "[Leave them be.]", "end": true}
+		]},
+		{"id": "rule", "speaker": "didier", "text": "Says who?"},
+		{"speaker": "emmanuel", "text": "Says the person who's going to bring a pump for that flat ball."},
+		{"speaker": "didier", "text": "A real pump? Really?"},
+		{"speaker": "emmanuel", "text": "A real pump. Eric! Grace! Come on, you're on Didier's team."},
+		{"speaker": "narrator", "text": "For a little while, the children play together again, as if nothing has changed.",
+		 "do": [{"start_mission": "ch2_kids"}, {"progress": "ch2_kids:talk_children"}], "end": true}
+	],
+
+	"ch2_didier_after": [
+		{"speaker": "didier", "text": "Don't forget the pump, Emmanuel!", "end": true}
+	],
+
+	"ch2_evening": [
+		{"speaker": "narrator", "text": "The radio stays silent on its stool."},
+		{"speaker": "joseph", "text": "Men came to the house today. They said a man who once led this community should lead it again, at the meetings."},
+		{"speaker": "joseph", "text": "They said there will be 'work' to do soon, and that everyone must take part.",
+		 "text_reduced": "They said everyone must take part in what is coming."},
+		{"speaker": "emmanuel", "text": "What did you tell them?"},
+		{"speaker": "joseph", "text": "That my knees are old and my heart is older. And that I do not do that kind of work."},
+		{"speaker": "joseph", "text": "They did not like that answer. They will come back."},
+		{"speaker": "joseph", "text": "Now. What did you hear today?"},
+		{"speaker": "emmanuel", "text": "Gasana says men from town came and wrote down names. Which families live in which house.", "if": [{"flag": "ch2_knows_names_listed"}]},
+		{"speaker": "joseph", "text": "Then it is worse than I thought.", "if": [{"flag": "ch2_knows_names_listed"}]},
+		{"speaker": "emmanuel", "text": "There's a notice at the school. A meeting on Saturday. It says absence will be noted."},
+
+		{"speaker": "emmanuel", "text": "Patrick wants me at that meeting. I told him no.", "if": [{"flag": "ch2_stance", "equals": "refuse"}]},
+		{"speaker": "joseph", "text": "Good. Saying no has a price these days. We will pay it quietly, and together.", "if": [{"flag": "ch2_stance", "equals": "refuse"}]},
+
+		{"speaker": "emmanuel", "text": "Patrick wants me at that meeting. I didn't answer him.", "if": [{"flag": "ch2_stance", "equals": "silent"}]},
+		{"speaker": "joseph", "text": "Silence keeps you safe for a day. It does not keep anyone else safe. Think about that.", "if": [{"flag": "ch2_stance", "equals": "silent"}]},
+
+		{"speaker": "emmanuel", "text": "Patrick wants me at that meeting. I told him I'd think about it.", "if": [{"flag": "ch2_stance", "equals": "pretend"}]},
+		{"speaker": "joseph", "text": "You let him believe you might go.", "if": [{"flag": "ch2_stance", "equals": "pretend"}]},
+		{"speaker": "emmanuel", "text": "I didn't know what else to say.", "if": [{"flag": "ch2_stance", "equals": "pretend"}]},
+		{"speaker": "joseph", "text": "Sometimes a lie buys time. Just never let the lie become who you are. Pretending is not joining. See that it never becomes joining.", "if": [{"flag": "ch2_stance", "equals": "pretend"}]},
+
+		{"speaker": "joseph", "text": "Emmanuel. Listen to me now."},
+		{"speaker": "joseph", "text": "If one day someone knocks on our door asking for help, we open it. Do you understand me?"},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"Yes, Papa. We open it.\"", "goto": "sleep", "do": [{"set_flag": "ch2_door_promise", "value": "yes"}, {"trust": "joseph", "delta": 1}]},
+			{"text": "\"Even if it's dangerous?\"", "goto": "danger", "do": [{"set_flag": "ch2_door_promise", "value": "asked"}]}
+		]},
+		{"id": "danger", "speaker": "joseph", "text": "Especially then."},
+		{"id": "sleep", "speaker": "joseph", "text": "Go and sleep. And say nothing about this to anyone.", "end": true}
+	]
+}

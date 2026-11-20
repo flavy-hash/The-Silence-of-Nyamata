@@ -1,0 +1,58 @@
+{
+	"id": "ch7",
+	"title": "The Crossing",
+	"setting": "The river",
+	"world": "river",
+	"time_of_day": "overcast",
+	"ambience": "village_overcast",
+	"player_start": {"spot": "start", "yaw": 1.5708},
+	"dialogue": "res://data/dialogue/ch7.json",
+
+	"fresh_start": {
+		"flags": {"ch3_sheltered_claudine": true, "ch3_sheltered_gasana": true, "ch5_treated_innocent": true, "ch5_helped_innocent": true},
+		"items": {"food": 1, "water": 3, "medicine": 1}
+	},
+
+	"missions": {
+		"ch7_main": {
+			"title": "The Crossing",
+			"main": true,
+			"objectives": [
+				{"id": "find_ford", "text": "Find a safe place to cross. Test the water at the marked stakes", "marker": "ford_hint"},
+				{"id": "care", "text": "Go back to the camp. Decide how to share what is left", "marker": "camp"},
+				{"id": "cross", "text": "Lead everyone across the ford, one or two at a time"},
+				{"id": "aline", "text": "Help Aline across. Go slowly; rest when you are tired", "marker": "aline"}
+			],
+			"on_complete": [{"event": "ch7_end"}]
+		}
+	},
+
+	"npcs": {
+		"aline": {"name": "Aline", "spot": [-22, 8.5], "face": "camp", "look": {"shirt": "#3f7fb0", "dress": true},
+			"conversations": [
+				{"conversation": "ch7_aline_support", "if": [{"objective": "ch7_main:aline"}]},
+				{"conversation": "ch7_aline"}
+			]},
+		"gasana": {"name": "Gasana", "spot": [-24.5, 6.2], "face": "camp", "look": {"shirt": "#5b7d4a", "pants": "#4a3f30", "hat": true},
+			"conversations": [
+				{"conversation": "ch7_lead_gasana", "if": [{"objective": "ch7_main:cross"}, {"not_flag": "ch7_across_gasana"}, {"not_flag": "ch7_leading_gasana"}]},
+				{"conversation": "ch7_wait"}
+			]},
+		"solange": {"name": "Solange", "spot": [-19.5, 4.4], "face": "camp", "look": {"shirt": "#6a8fb0", "dress": true, "headwrap": true, "headwrap_color": "#d0c090"},
+			"conversations": [
+				{"conversation": "ch7_lead_solange", "if": [{"objective": "ch7_main:cross"}, {"not_flag": "ch7_across_solange"}, {"not_flag": "ch7_leading_solange"}]},
+				{"conversation": "ch7_wait"}
+			]},
+		"claudine": {"name": "Claudine", "spot": [-21, 2.8], "face": "camp", "look": {"shirt": "#c4a23a", "dress": true, "headwrap": true, "headwrap_color": "#a83a2a"},
+			"conversations": [
+				{"conversation": "ch7_lead_claudine", "if": [{"objective": "ch7_main:cross"}, {"not_flag": "ch7_across_claudine"}, {"not_flag": "ch7_leading_claudine"}]},
+				{"conversation": "ch7_wait"}
+			]},
+		"eric": {"name": "Eric", "spot": [-21.8, 2.3], "face": "camp", "voice": "child", "look": {"shirt": "#4a8a5a", "pants": "#2a2a2a", "body_scale": 0.6}},
+		"innocent": {"name": "Innocent", "spot": [-25, 3.5], "face": "camp", "look": {"shirt": "#9a8a70", "pants": "#3a3a3a"},
+			"conversations": [
+				{"conversation": "ch7_lead_innocent", "if": [{"objective": "ch7_main:cross"}, {"not_flag": "ch7_across_innocent"}, {"not_flag": "ch7_leading_innocent"}]},
+				{"conversation": "ch7_wait"}
+			]}
+	}
+}

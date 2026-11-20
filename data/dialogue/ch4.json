@@ -1,0 +1,112 @@
+{
+	"ch4_opening": [
+		{"speaker": "narrator", "text": "The killing has spread to every hill. Joseph's storage room, behind the cupboard, now holds people whose names were written in someone's book."},
+		{"speaker": "joseph", "text": "We need food, blankets and water in there before they sleep. Take the food from the shelf, the blankets from the chest. The water is in the barrel in the yard."},
+		{"speaker": "joseph", "text": "The men walk past the gate all night. They can see through the bars. Keep low in the yard, and wait until the path is empty."},
+		{"speaker": "joseph", "text": "Mama Beata will come to the back window after dark. She is bringing medicine."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"I'll be careful.\"", "goto": "end"},
+			{"text": "\"How long can we keep them hidden, Papa?\"", "goto": "long"}
+		]},
+		{"id": "long", "speaker": "joseph", "text": "One night at a time, Emmanuel. Nobody can promise more than that."},
+		{"id": "end", "speaker": "joseph", "text": "Go. Quietly.", "do": [{"start_mission": "ch4_main"}], "end": true}
+	],
+
+	"ch4_joseph": [
+		{"speaker": "joseph", "text": "One thing at a time. Quietly.", "end": true}
+	],
+
+	"ch4_take_food": [
+		{"speaker": "narrator", "text": "Emmanuel fills a basket from the shelf: beans, a little flour, the last of the bananas.",
+		 "do": [{"give_item": "food", "count": 3}, {"set_flag": "ch4_got_food"}, {"progress": "ch4_main:gather"}], "end": true}
+	],
+	"ch4_take_blankets": [
+		{"speaker": "narrator", "text": "Two blankets from the chest. They smell of smoke and of home.",
+		 "do": [{"give_item": "blanket", "count": 2}, {"set_flag": "ch4_got_blankets"}, {"progress": "ch4_main:gather"}], "end": true}
+	],
+	"ch4_take_water": [
+		{"speaker": "narrator", "text": "The rain barrel is nearly full. Emmanuel fills the jerrycans as quietly as water allows.",
+		 "do": [{"give_item": "water", "count": 3}, {"set_flag": "ch4_got_water"}, {"progress": "ch4_main:gather"}], "end": true}
+	],
+
+	"ch4_beata": [
+		{"speaker": "narrator", "text": "A soft scratch at the shutter. Emmanuel opens it a hand's width."},
+		{"speaker": "beata", "text": "Here. Medicine: bandages, iodine, a few tablets for fever. It is all I could find.", "do": [{"give_item": "medicine", "count": 2}]},
+		{"speaker": "emmanuel", "text": "Is there any news of Olivier?"},
+		{"speaker": "beata", "text": "Not yet. But no bad news either. The people I trust are still looking."},
+		{"speaker": "beata", "text": "Emmanuel, they are searching houses now. Not every night, not every house. But they are coming closer."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"Thank you for risking this.\"", "goto": "thanks", "do": [{"trust": "beata", "delta": 1}]},
+			{"text": "\"Why are you helping us?\"", "goto": "why"}
+		]},
+		{"id": "thanks", "speaker": "beata", "text": "Thank me when this is over.", "goto": "end"},
+		{"id": "why", "speaker": "beata", "text": "Because I have sold salt to every family on this hill for twenty years. Every one of them. I will not choose now which ones deserve to live."},
+		{"id": "end", "speaker": "beata", "text": "Close the shutter. Go.", "do": [{"progress": "ch4_main:beata"}], "end": true}
+	],
+
+	"ch4_beata_wait": [
+		{"speaker": "narrator", "text": "The shutter is closed. Mama Beata will come when it is fully dark.", "end": true}
+	],
+
+	"ch4_aline_supplies": [
+		{"speaker": "aline", "text": "You brought all of this? Without being seen?"},
+		{"speaker": "aline", "text": "Then we ration it. A little water every few hours. The blankets for Gasana and the children first. I'll keep the medicine; I know how to use it."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"You sound like a doctor already.\"", "goto": "doctor", "do": [{"trust": "aline", "delta": 1}]},
+			{"text": "\"Is there anything else you need?\"", "goto": "need"}
+		]},
+		{"id": "doctor", "speaker": "aline", "text": "I'm not a doctor. I'm a medical student hiding in a storage room. But I'll be a doctor one day. I promised you, didn't I?", "goto": "end"},
+		{"id": "need", "speaker": "aline", "text": "News of my brother. And for this to be over."},
+		{"id": "end", "speaker": "narrator", "text": "Aline hands out the blankets. Gasana takes his with both hands, like a gift.",
+		 "do": [{"take_item": "blanket", "count": 2}, {"progress": "ch4_main:supply"}], "end": true}
+	],
+
+	"ch4_aline": [
+		{"speaker": "aline", "text": "Every time I hear footsteps, I think it's Olivier. And every time, I hope it isn't. Because if it's him, it means he's out there alone.", "end": true}
+	],
+
+	"ch4_gasana": [
+		{"speaker": "gasana", "text": "Forty years I have been your father's neighbour. I never thought I would live in his storage room. I never thought I would be grateful to.", "end": true}
+	],
+
+	"ch4_solange": [
+		{"speaker": "solange", "text": "I came from the next hill. I ran when they came, and I kept running until your father opened his door."},
+		{"speaker": "solange", "text": "I don't know where my parents are. I keep telling myself they ran too.", "end": true}
+	],
+
+	"ch4_claudine": [
+		{"speaker": "claudine", "text": "Eric hasn't spoken all day. He just holds my hand. Thank you for bringing us here, Emmanuel.", "end": true}
+	],
+
+	"ch4_mats": [
+		{"speaker": "narrator", "text": "Emmanuel rolls up the extra sleeping mats and pushes them under the bench. A house with one old man and his son needs only two.",
+		 "do": [{"set_flag": "ch4_hid_mats"}, {"progress": "ch4_main:conceal"}], "end": true}
+	],
+	"ch4_cups": [
+		{"speaker": "narrator", "text": "Seven cups on the table. Emmanuel washes five and puts them away. Two cups. Two people.",
+		 "do": [{"set_flag": "ch4_hid_cups"}, {"progress": "ch4_main:conceal"}], "end": true}
+	],
+
+	"ch4_into_room": [
+		{"speaker": "joseph", "text": "Someone is coming up the path. Several men. Go in, Emmanuel. Stay with them."},
+		{"speaker": "joseph", "text": "Whatever you hear, do not make a sound. Do not come out. Not for anything.", "end": true}
+	],
+
+	"ch4_farewell": [
+		{"speaker": "narrator", "text": "Long after the footsteps have gone, the cupboard slides back. Mama Beata is at the back window."},
+		{"speaker": "beata", "text": "They will search every house tomorrow, and this one first. They must leave tonight."},
+		{"speaker": "beata", "text": "There is a way through the valley, past the old road, to the river. On the other side, people say, there is shelter. I will take you to the start of the path myself."},
+		{"speaker": "emmanuel", "text": "Papa, you're coming with us."},
+		{"speaker": "joseph", "text": "No. If this house is empty, they will look for you. If I am here, they will look at me."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"Then I'm staying with you.\"", "goto": "stay", "do": [{"set_flag": "ch4_farewell", "value": "stay"}]},
+			{"text": "\"I'll come back for you.\"", "goto": "back", "do": [{"set_flag": "ch4_farewell", "value": "return"}]},
+			{"text": "[Hold your father without a word.]", "goto": "hold", "do": [{"set_flag": "ch4_farewell", "value": "embrace"}]}
+		]},
+		{"id": "stay", "speaker": "joseph", "text": "No. Your place is with them now. That is what I raised you for.", "goto": "last"},
+		{"id": "back", "speaker": "joseph", "text": "I know you will try. That is enough for me.", "goto": "last"},
+		{"id": "hold", "speaker": "narrator", "text": "Joseph holds his son for a long moment, the way he did when Emmanuel was small."},
+		{"id": "last", "speaker": "joseph", "text": "Take care of each other. All of you. Quietly, and together."},
+		{"speaker": "narrator", "text": "Then he opens the back door into the dark.", "end": true}
+	]
+}

@@ -1,0 +1,22 @@
+{
+	"narrator": {"name": "", "narration": true, "voice": {"gender": "female", "variant": 1, "pitch": 0.95, "rate": 0.9}},
+	"emmanuel": {"name": "Emmanuel", "color": "#e8d3a0", "voice": {"gender": "male", "pitch": 1.0, "rate": 1.0}},
+	"aline": {"name": "Aline", "color": "#9fd0c7", "voice": {"gender": "female", "variant": 0, "pitch": 1.08, "rate": 1.02}},
+	"joseph": {"name": "Joseph", "color": "#d9a441", "voice": {"gender": "male", "pitch": 0.82, "rate": 0.88}},
+	"beata": {"name": "Mama Beata", "color": "#e39b6b", "voice": {"gender": "female", "variant": 1, "pitch": 0.88, "rate": 0.92}},
+	"patrick": {"name": "Patrick", "color": "#b7b7c9", "voice": {"gender": "male", "pitch": 1.08, "rate": 1.08}},
+	"gasana": {"name": "Gasana", "color": "#a9c98a", "voice": {"gender": "male", "pitch": 0.75, "rate": 0.85}},
+	"uwase": {"name": "Madame Uwase", "color": "#c9a9d9", "voice": {"gender": "female", "variant": 1, "pitch": 1.0, "rate": 0.95}},
+	"claudine": {"name": "Claudine", "color": "#e0c27a", "voice": {"gender": "female", "variant": 0, "pitch": 1.0, "rate": 0.98}},
+	"bosco": {"name": "Bosco", "color": "#c98f6b", "voice": {"gender": "male", "pitch": 0.92, "rate": 1.1}},
+	"radio": {"name": "Radio", "color": "#9a9a9a", "voice": {"gender": "male", "pitch": 0.7, "rate": 1.12}},
+	"didier": {"name": "Didier", "color": "#e0e0d8", "voice": {"gender": "female", "variant": 1, "pitch": 1.5, "rate": 1.12}},
+	"solange": {"name": "Solange", "color": "#a9c3e0", "voice": {"gender": "female", "variant": 0, "pitch": 1.12, "rate": 1.0}},
+	"innocent": {"name": "Injured man", "color": "#c9b48f", "voice": {"gender": "male", "pitch": 0.9, "rate": 0.9}},
+	"mother": {"name": "Mukamana", "color": "#c99ab8", "voice": {"gender": "female", "variant": 1, "pitch": 0.95, "rate": 0.92}},
+	"jean": {"name": "Jean", "color": "#e0a080", "voice": {"gender": "male", "pitch": 1.25, "rate": 1.1}},
+	"vestine": {"name": "Vestine", "color": "#a9c98f", "voice": {"gender": "female", "variant": 0, "pitch": 0.98, "rate": 0.95}},
+	"olivier": {"name": "Olivier", "color": "#e8d0a0", "voice": {"gender": "female", "variant": 1, "pitch": 1.35, "rate": 1.05}},
+	"patrol": {"name": "Patrol", "color": "#b08070", "voice": {"gender": "male", "pitch": 0.85, "rate": 1.0}},
+	"child": {"name": "Child", "color": "#e0e0d8", "voice": {"gender": "female", "variant": 0, "pitch": 1.45, "rate": 1.1}}
+}

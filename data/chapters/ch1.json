@@ -1,0 +1,117 @@
+{
+	"id": "ch1",
+	"title": "The Days of Friendship",
+	"setting": "Rural Rwanda, 1993",
+	"time_of_day": "morning",
+	"ambience": "village_day",
+	"player_start": {"spot": "start", "yaw": 3.14159},
+	"dialogue": "res://data/dialogue/ch1.json",
+
+	"opening_captions": [
+		"Before the fear, there was laughter.",
+		"Before the silence, there were voices.",
+		"Before people learned to fear their neighbors, they shared roads, markets and dreams."
+	],
+
+	"missions": {
+		"ch1_main": {
+			"title": "The Days of Friendship",
+			"main": true,
+			"objectives": [
+				{"id": "talk_gasana", "text": "Find Gasana at his bean field and ask how you can help", "marker": "gasana"},
+				{"id": "carry_sacks", "text": "Carry the sacks of beans to the storehouse", "count": 3, "marker": "farm_task"},
+				{"id": "return_gasana", "text": "Tell Gasana the work is done", "marker": "gasana"},
+				{"id": "meet_aline", "text": "Meet Aline under the tree on the hill", "marker": "aline"}
+			],
+			"on_complete": [{"event": "ch1_evening"}]
+		},
+		"ch1_market": {
+			"title": "Market Day",
+			"objectives": [
+				{"id": "visit_beata", "text": "Visit Mama Beata's shop in the village square", "marker": "beata"}
+			],
+			"on_complete": [{"set_flag": "ch1_visited_beata"}]
+		},
+		"ch1_neighbours": {
+			"title": "Good Neighbours",
+			"objectives": [
+				{"id": "greet", "text": "Greet the teacher, Claudine and Patrick", "count": 3}
+			],
+			"on_complete": [{"set_flag": "ch1_greeted_neighbours"}]
+		}
+	},
+
+	"npcs": {
+		"aline": {
+			"name": "Aline", "spot": "aline_intro", "face": "start",
+			"look": {"shirt": "#3f7fb0", "dress": true},
+			"conversations": [
+				{"conversation": "aline_hill", "if": [{"objective": "ch1_main:meet_aline"}]},
+				{"conversation": "aline_waiting", "if": [{"mission_active": "ch1_main"}]}
+			]
+		},
+		"joseph": {
+			"name": "Joseph", "spot": "joseph", "yaw": 0.4,
+			"look": {"shirt": "#7a5a3a", "pants": "#3a3a35", "hat": true},
+			"conversations": [
+				{"conversation": "joseph_proud", "if": [{"flag": "ch1_helped_gasana"}]},
+				{"conversation": "joseph_morning"}
+			],
+			"barks": [{"text": "Greet Gasana for me!"}]
+		},
+		"gasana": {
+			"name": "Gasana", "spot": "gasana", "face": "sack_1",
+			"look": {"shirt": "#5b7d4a", "pants": "#4a3f30", "hat": true},
+			"conversations": [
+				{"conversation": "gasana_request", "if": [{"objective": "ch1_main:talk_gasana"}]},
+				{"conversation": "gasana_waiting", "if": [{"objective": "ch1_main:carry_sacks"}]},
+				{"conversation": "gasana_thanks", "if": [{"objective": "ch1_main:return_gasana"}]},
+				{"conversation": "gasana_after"}
+			],
+			"barks": [{"text": "Emmanuel! Over here!", "if": [{"objective": "ch1_main:talk_gasana"}]}]
+		},
+		"beata": {
+			"name": "Mama Beata", "spot": "beata", "yaw": -1.5708,
+			"look": {"shirt": "#d9822b", "dress": true, "headwrap": true, "headwrap_color": "#2f6b4f"},
+			"conversations": [
+				{"conversation": "beata_market", "if": [{"mission_active": "ch1_market"}]},
+				{"conversation": "beata_default"}
+			],
+			"barks": [{"text": "Fresh sugar today! And salt, and soap."}]
+		},
+		"uwase": {
+			"name": "Madame Uwase", "spot": "uwase", "yaw": -1.5708,
+			"look": {"shirt": "#7d4a8a", "dress": true},
+			"conversations": [
+				{"conversation": "uwase_greet", "if": [{"not_flag": "ch1_met_uwase"}]},
+				{"conversation": "uwase_default"}
+			]
+		},
+		"claudine": {
+			"name": "Claudine", "spot": "claudine", "yaw": 2.356,
+			"look": {"shirt": "#c4a23a", "dress": true, "headwrap": true, "headwrap_color": "#a83a2a"},
+			"conversations": [
+				{"conversation": "claudine_greet", "if": [{"not_flag": "ch1_met_claudine"}]},
+				{"conversation": "claudine_default"}
+			],
+			"barks": [{"text": "Good morning, Emmanuel!"}]
+		},
+		"patrick": {
+			"name": "Patrick", "spot": "patrick", "face": "kids",
+			"look": {"shirt": "#5a5a7a", "pants": "#2c2c30"},
+			"conversations": [
+				{"conversation": "patrick_greet", "if": [{"not_flag": "ch1_met_patrick"}]},
+				{"conversation": "patrick_default"}
+			],
+			"barks": [{"text": "Emmanuel! You still owe me a rematch!"}]
+		}
+	},
+
+	"kids": [
+		{"name": "Didier", "look": {"shirt": "#e0e0d8", "pants": "#2a3a6a", "body_scale": 0.66},
+		 "barks": [{"text": "Emmanuel, watch this! Watch!"}, {"text": "Pass! Pass it to me!"}]},
+		{"name": "Kevin", "look": {"shirt": "#d9a441", "pants": "#3a2a2a", "body_scale": 0.62}},
+		{"name": "Grace", "look": {"shirt": "#b84a5a", "dress": true, "body_scale": 0.64}},
+		{"name": "Eric", "look": {"shirt": "#4a8a5a", "pants": "#2a2a2a", "body_scale": 0.6}}
+	]
+}

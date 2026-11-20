@@ -1,0 +1,71 @@
+{
+	"id": "ch6",
+	"title": "The Betrayal",
+	"setting": "The next morning",
+	"world": "road",
+	"time_of_day": "overcast",
+	"ambience": "village_overcast",
+	"player_start": {"spot": "shelter_door", "yaw": 2.68},
+	"dialogue": "res://data/dialogue/ch6.json",
+
+	"fresh_start": {
+		"flags": {"ch3_sheltered_claudine": true, "ch3_sheltered_gasana": true, "ch5_treated_innocent": true, "ch5_helped_innocent": true},
+		"items": {"food": 1, "water": 3, "medicine": 1}
+	},
+
+	"missions": {
+		"ch6_main": {
+			"title": "The Betrayal",
+			"main": true,
+			"objectives": [
+				{"id": "clues", "text": "Look around the houses for signs of what happened in the night", "count": 3},
+				{"id": "vestine", "text": "Find Vestine", "marker": "vestine"},
+				{"id": "confront", "text": "Patrick is at the old school. Go alone", "marker": "patrick"},
+				{"id": "escape", "text": "Lead everyone out to the east before the search closes in. Keep to the grass", "marker": "exit"}
+			],
+			"on_complete": [{"event": "ch6_end"}]
+		}
+	},
+
+	"npcs": {
+		"aline": {"name": "Aline", "spot": "group_wait", "face": "shelter_door", "look": {"shirt": "#3f7fb0", "dress": true},
+			"conversations": [{"conversation": "ch6_aline"}]},
+		"gasana": {"name": "Gasana", "spot": [58.2, -54.0], "face": "shelter_door", "look": {"shirt": "#5b7d4a", "pants": "#4a3f30", "hat": true},
+			"conversations": [{"conversation": "ch6_group"}]},
+		"solange": {"name": "Solange", "spot": [56.0, -52.0], "face": "shelter_door", "look": {"shirt": "#6a8fb0", "dress": true, "headwrap": true, "headwrap_color": "#d0c090"},
+			"conversations": [{"conversation": "ch6_group"}]},
+		"claudine": {"name": "Claudine", "spot": [58.5, -52.2], "face": "shelter_door", "look": {"shirt": "#c4a23a", "dress": true, "headwrap": true, "headwrap_color": "#a83a2a"},
+			"conversations": [{"conversation": "ch6_group"}]},
+		"eric": {"name": "Eric", "spot": [59.2, -52.8], "face": "shelter_door", "voice": "child", "look": {"shirt": "#4a8a5a", "pants": "#2a2a2a", "body_scale": 0.6}},
+		"innocent": {"name": "Innocent", "spot": [57.5, -55.2], "face": "shelter_door", "look": {"shirt": "#9a8a70", "pants": "#3a3a3a"},
+			"conversations": [{"conversation": "ch6_group"}]},
+		"vestine": {
+			"name": "Vestine", "spot": "vestine", "face": "shelter",
+			"look": {"shirt": "#7a9a6a", "dress": true, "headwrap": true, "headwrap_color": "#c08040"},
+			"conversations": [
+				{"conversation": "ch6_vestine", "if": [{"objective": "ch6_main:vestine"}]},
+				{"conversation": "ch6_vestine_after", "if": [{"flag": "ch6_heard_vestine"}]},
+				{"conversation": "ch6_vestine_early"}
+			]
+		},
+		"patrick": {
+			"name": "Patrick", "spot": "school_front", "face": "shelter",
+			"look": {"shirt": "#5a5a7a", "pants": "#2c2c30"},
+			"conversations": [{"conversation": "ch6_patrick", "if": [{"objective": "ch6_main:confront"}]}]
+		}
+	},
+
+	"cover": [
+		{"at": [61, -51], "radius": 3.5},
+		{"at": [67, -41], "radius": 3.5},
+		{"at": [72, -46], "radius": 4.0},
+		{"at": [77, -40], "radius": 4.0},
+		{"at": [64, -58], "radius": 4.0}
+	],
+
+	"watchers": [
+		{"route": [[40, -62], [52, -66], [64, -64], [70, -56]], "view": 13.0, "barks": ["Check the empty houses.", "They were here last night."]},
+		{"route": [[46, -42], [58, -36], [66, -32]], "view": 13.0, "barks": ["Look in the grass.", "Over by the marsh!"]},
+		{"route": [[84, -46], [76, -52]], "view": 12.0, "barks": ["Watch the path to the river."]}
+	]
+}

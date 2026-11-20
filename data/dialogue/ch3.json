@@ -1,0 +1,127 @@
+{
+	"ch3_radio": [
+		{"speaker": "narrator", "text": "Evening. Joseph has switched the radio back on. Everyone on the hill is listening to something tonight."},
+		{"speaker": "radio", "text": "This is a special announcement. The plane carrying the President of the Republic, Juvénal Habyarimana, was shot down this evening as it approached Kigali."},
+		{"speaker": "radio", "text": "[Then silence. Then music. Then, through the night, other voices, calling for something terrible.]",
+		 "text_reduced": "[Then silence, and then voices full of anger.]"},
+		{"speaker": "emmanuel", "text": "Papa?"},
+		{"speaker": "joseph", "text": "Bolt the door, Emmanuel. And do not go to sleep in your clothes tonight. Keep your shoes on.", "end": true}
+	],
+
+	"ch3_night": [
+		{"speaker": "narrator", "text": "Hours later, Emmanuel wakes to shouting somewhere across the valley. Dogs are barking. Someone is running on the path."},
+		{"speaker": "joseph", "text": "Stay inside. Listen carefully. Whatever happens, don't mistake cruelty for courage."},
+		{"speaker": "narrator", "text": "A knock at the door. Soft, fast, frightened."},
+		{"speaker": "aline", "text": "I don't know where my brother is. People are searching for us. Please—"},
+		{"speaker": "emmanuel", "text": "Come in. We'll figure out what we can do."},
+		{"speaker": "joseph", "text": "We have to protect the people in our care. Quietly, and together."},
+		{"speaker": "aline", "text": "They came to our house. Everyone ran. Olivier ran too, and I lost him in the dark. He's ten, Emmanuel. He's only ten."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"I'll find him.\"", "goto": "go", "do": [{"set_flag": "ch3_vowed_find_olivier"}, {"trust": "aline", "delta": 1}]},
+			{"text": "\"Papa, I have to go and look.\"", "goto": "go"}
+		]},
+		{"id": "go", "speaker": "joseph", "text": "Then go the way the shadows go. Stay low, keep to the tall grass, and if anyone sees you, come straight back. Do not try to be brave. Be careful."},
+		{"speaker": "aline", "text": "He loves the football field. He goes there when he's scared. He thinks nobody can find him there."},
+		{"speaker": "joseph", "text": "And Emmanuel, Gasana lives alone by his storehouse. If you pass that way, see if he is there.",
+		 "do": [{"start_mission": "ch3_main"}, {"start_mission": "ch3_gasana"}], "end": true}
+	],
+
+	"ch3_joseph_wait": [
+		{"speaker": "joseph", "text": "Go quietly. Come back to me.", "end": true}
+	],
+
+	"ch3_aline_wait": [
+		{"speaker": "aline", "text": "Please find him.", "end": true}
+	],
+
+	"ch3_sandal": [
+		{"speaker": "narrator", "text": "In the grass at the edge of the pitch lies a small sandal. One strap has been mended with string, the way Aline mends everything."},
+		{"speaker": "emmanuel", "text": "Olivier was here. But where did he go?",
+		 "do": [{"set_flag": "ch3_found_sandal"}, {"progress": "ch3_main:find_sandal"}], "end": true}
+	],
+
+	"ch3_claudine": [
+		{"speaker": "narrator", "text": "Behind the house, pressed into the shadow of the wall, Claudine is holding Eric so tightly he can barely breathe."},
+		{"speaker": "claudine", "text": "Emmanuel? Oh, thank God. I thought you were one of them."},
+		{"speaker": "emmanuel", "text": "Have you seen Olivier? Aline's brother?"},
+		{"speaker": "claudine", "text": "A boy ran past an hour ago, towards the market. Towards Mama Beata's. I think it was him."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"Come with me to my father's house. You'll be safer there.\"", "goto": "come",
+			 "do": [{"start_mission": "ch3_claudine"}, {"set_flag": "ch3_claudine_following"}, {"trust": "claudine", "delta": 1}]},
+			{"text": "\"Stay hidden here. I'll come back for you.\"", "goto": "stay"}
+		]},
+		{"id": "come", "speaker": "claudine", "text": "Eric, hold my hand. Don't let go. We stay right behind Emmanuel.", "goto": "end"},
+		{"id": "stay", "speaker": "claudine", "text": "We'll stay. Please come back."},
+		{"id": "end", "speaker": "narrator", "text": "Somewhere close, a torch beam swings across the path.",
+		 "do": [{"set_flag": "ch3_met_claudine"}, {"progress": "ch3_main:find_witness"}], "end": true}
+	],
+
+	"ch3_claudine_follow": [
+		{"speaker": "claudine", "text": "We're right behind you.", "end": true}
+	],
+
+	"ch3_claudine_stay": [
+		{"speaker": "claudine", "text": "Will you take us with you now?"},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"Yes. Come, quickly and quietly.\"", "goto": "come",
+			 "do": [{"start_mission": "ch3_claudine"}, {"set_flag": "ch3_claudine_following"}]},
+			{"text": "\"Not yet. Stay hidden.\"", "end": true}
+		]},
+		{"id": "come", "speaker": "claudine", "text": "Eric, hold my hand.", "end": true}
+	],
+
+	"ch3_gasana": [
+		{"speaker": "narrator", "text": "The storehouse door is open a crack. Inside, among the sacks Emmanuel once carried, an old man sits very still."},
+		{"speaker": "gasana", "text": "Emmanuel. They have been past twice. They asked for me by name."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"Come with me. My father sent me for you.\"", "goto": "come", "do": [{"trust": "gasana", "delta": 1}]},
+			{"text": "\"Stay hidden. I'll tell my father where you are.\"", "goto": "stay"}
+		]},
+		{"id": "come", "speaker": "gasana", "text": "Joseph sent you? Then I will come. Slowly. My legs are older than my courage.",
+		 "do": [{"progress": "ch3_gasana:find"}, {"set_flag": "ch3_gasana_following"}], "end": true},
+		{"id": "stay", "speaker": "gasana", "text": "Tell him I am here. Tell him I am grateful.", "end": true}
+	],
+
+	"ch3_gasana_follow": [
+		{"speaker": "gasana", "text": "Go on. I am behind you.", "end": true}
+	],
+
+	"ch3_gasana_stay": [
+		{"speaker": "gasana", "text": "I will wait. Tell Joseph.", "end": true}
+	],
+
+	"ch3_beata": [
+		{"speaker": "narrator", "text": "The back window of the shop is shuttered. Emmanuel taps on the wood, once, twice."},
+		{"speaker": "beata", "text": "Who is it? Emmanuel? Speak quietly."},
+		{"speaker": "emmanuel", "text": "Olivier, Aline's brother. Claudine saw him run this way."},
+		{"speaker": "beata", "text": "He was here. He was so frightened he couldn't speak. But there were men at the front door, and he slipped out the back, towards the banana groves, before I could stop him."},
+		{"speaker": "emmanuel", "text": "Then I'll look in the groves."},
+		{"speaker": "beata", "text": "No. Listen to me. There are men in the groves too. You will not find him tonight, and if they find you, you will not help anyone."},
+		{"speaker": "beata", "text": "I know people who are hiding others. I will ask them to look for him. Go home, Emmanuel. Tell Aline her brother was alive an hour ago."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"Thank you, Mama Beata.\"", "goto": "end", "do": [{"trust": "beata", "delta": 1}]},
+			{"text": "\"How will I know if you find him?\"", "goto": "how"}
+		]},
+		{"id": "how", "speaker": "beata", "text": "You will know. A shopkeeper hears everything, remember?"},
+		{"id": "end", "speaker": "beata", "text": "Now go. Keep low.",
+		 "do": [{"set_flag": "ch3_beata_searching"}, {"progress": "ch3_main:reach_beata"}], "end": true}
+	],
+
+	"ch3_beata_after": [
+		{"speaker": "beata", "text": "Go home, Emmanuel. Now.", "end": true}
+	],
+
+	"ch3_end": [
+		{"speaker": "aline", "text": "Emmanuel! Did you find him?"},
+		{"speaker": "emmanuel", "text": "Not yet. But Mama Beata saw him an hour ago. He was alive, Aline. He ran into the banana groves. She has people looking for him."},
+		{"speaker": "aline", "text": "Alive. An hour ago, he was alive."},
+		{"speaker": "emmanuel", "text": "I found this at the football field.", "if": [{"flag": "ch3_found_sandal"}]},
+		{"speaker": "narrator", "text": "Aline takes the small mended sandal and holds it against her chest.", "if": [{"flag": "ch3_found_sandal"}]},
+		{"speaker": "joseph", "text": "Claudine. Eric. Come in, come in. You are safe here, as safe as anyone is tonight.", "if": [{"flag": "ch3_sheltered_claudine"}]},
+		{"speaker": "joseph", "text": "Gasana, old friend. Sit. Rest your legs.", "if": [{"flag": "ch3_sheltered_gasana"}]},
+		{"speaker": "joseph", "text": "I will go for Gasana myself before dawn. He should not be alone.", "if": [{"not_flag": "ch3_sheltered_gasana"}]},
+		{"speaker": "joseph", "text": "We will make room in the storage room. For everyone who comes to this door."},
+		{"speaker": "aline", "text": "Joseph, if they find us here, they will—"},
+		{"speaker": "joseph", "text": "Then they must not find you. Quietly, and together. That is how we will do this.", "end": true}
+	]
+}

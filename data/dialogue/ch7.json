@@ -1,0 +1,85 @@
+{
+	"ch7_opening": [
+		{"speaker": "narrator", "text": "The river is wider than any of them imagined. Brown water, moving fast in the middle, papyrus on both banks as tall as a man."},
+		{"speaker": "aline", "text": "We can't just walk in. Gasana can't swim. Eric can't swim. I'm not sure I can."},
+		{"speaker": "emmanuel", "text": "Mukamana said to cross where the water is wide and quiet. Never where it is narrow and fast.", "if": [{"flag": "ch5_knows_ford"}]},
+		{"speaker": "emmanuel", "text": "Wait here, all of you. I'll find a place where we can cross.",
+		 "do": [{"start_mission": "ch7_main"}], "end": true}
+	],
+
+	"ch7_test_north": [
+		{"speaker": "narrator", "text": "Emmanuel pushes a stick into the water. It does not touch the bottom. The current pulls it from his hand. Not here.", "end": true}
+	],
+	"ch7_test_mid": [
+		{"speaker": "narrator", "text": "Here the river narrows between two banks and runs fast and loud over hidden rocks. Narrow and fast. Not here.", "end": true}
+	],
+	"ch7_test_ford": [
+		{"speaker": "narrator", "text": "The river spreads wide here, slow and quiet. The stick touches sand at knee depth, all the way out. Here. They can cross here.",
+		 "do": [{"set_flag": "ch7_found_ford"}, {"progress": "ch7_main:find_ford"}], "end": true}
+	],
+
+	"ch7_care": [
+		{"speaker": "narrator", "text": "Back at the camp, everyone is waiting. Gasana is shivering, his skin hot to the touch. A fever.", "if": [{"flag": "ch3_sheltered_gasana"}]},
+		{"speaker": "narrator", "text": "Back at the camp, everyone is waiting. Gasana is shivering, his skin hot to the touch. A fever. Joseph brought him to the storage room himself, the morning after the night everything changed.", "if": [{"not_flag": "ch3_sheltered_gasana"}]},
+		{"speaker": "aline", "text": "Innocent's bandage needs changing too. And there is so little left.", "if": [{"flag": "ch5_treated_innocent"}]},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "[Medicine] Give Gasana the fever tablets.", "if": [{"item": "medicine"}], "goto": "gasana_med",
+			 "do": [{"take_item": "medicine"}, {"set_flag": "ch7_cared_gasana"}]},
+			{"text": "[Food and water] Give Gasana the last food and water, so he has strength.", "if": [{"item": "food"}, {"item": "water"}], "goto": "gasana_food",
+			 "do": [{"take_item": "food"}, {"take_item": "water"}, {"set_flag": "ch7_cared_gasana"}]},
+			{"text": "\"We have nothing left to give him.\"", "goto": "nothing", "do": [{"set_flag": "ch7_gasana_untreated"}]}
+		]},
+		{"id": "gasana_med", "speaker": "gasana", "text": "Bitter. Good. Bitter medicine works best, my mother used to say.", "goto": "innocent"},
+		{"id": "gasana_food", "speaker": "gasana", "text": "You should keep this for the young ones. But thank you.", "goto": "innocent"},
+		{"id": "nothing", "speaker": "gasana", "text": "Don't worry about an old man, Emmanuel. Worry about the river."},
+		{"id": "innocent", "speaker": "aline", "text": "There's one more dressing for Innocent's leg, if the medicine reaches.", "if": [{"flag": "ch5_treated_innocent"}, {"item": "medicine"}],
+		 "do": [{"take_item": "medicine"}, {"set_flag": "ch7_cared_innocent"}]},
+		{"speaker": "narrator", "text": "Aline sits down heavily on the bank. Then she does not get up."},
+		{"speaker": "aline", "text": "I don't know if I can keep going."},
+		{"speaker": "emmanuel", "text": "We will go slowly. You don't have to do it alone."},
+		{"speaker": "aline", "text": "Then let's make sure no one gets left behind if we can help it."},
+		{"speaker": "emmanuel", "text": "We'll do our best. Together."},
+		{"speaker": "aline", "text": "Take the others first. I'll go last. I'll need your shoulder."},
+		{"speaker": "narrator", "text": "Far up on the ridge behind them, there are voices. Still far away. Not for long.",
+		 "do": [{"progress": "ch7_main:care"}], "end": true}
+	],
+
+	"ch7_aline": [
+		{"speaker": "aline", "text": "Take the others first. I'll be here.", "end": true}
+	],
+
+	"ch7_wait": [
+		{"speaker": "narrator", "text": "They are watching the water, and the ridge.", "end": true}
+	],
+
+	"ch7_lead_gasana": [
+		{"speaker": "gasana", "text": "Lead on. I will put my feet where you put yours.", "do": [{"event": "ch7_lead", "data": {"id": "gasana"}}], "end": true}
+	],
+	"ch7_lead_solange": [
+		{"speaker": "solange", "text": "I'm ready. Don't let go of my hand in the water.", "do": [{"event": "ch7_lead", "data": {"id": "solange"}}], "end": true}
+	],
+	"ch7_lead_claudine": [
+		{"speaker": "claudine", "text": "Eric, on my back. Hold on to my neck and don't look at the water.", "do": [{"event": "ch7_lead", "data": {"id": "claudine"}}], "end": true}
+	],
+	"ch7_lead_innocent": [
+		{"speaker": "innocent", "text": "My leg is slow, but it will get there.", "do": [{"event": "ch7_lead", "data": {"id": "innocent"}}], "end": true}
+	],
+
+	"ch7_aline_support": [
+		{"speaker": "aline", "text": "All right. My arm over your shoulder. Slowly.",
+		 "do": [{"event": "ch7_support_aline"}], "end": true}
+	],
+
+	"ch7_separated": [
+		{"speaker": "narrator", "text": "Torches on the ridge, and then on the slope. Those still on the near bank have no time left. They run, not towards the river but along it, into the papyrus, and are gone."},
+		{"speaker": "aline", "text": "No. No, no, they were right there—"},
+		{"speaker": "emmanuel", "text": "They're hiding. They know how to hide. We'll find them, Aline. When this is over, we will find them.", "end": true}
+	],
+
+	"ch7_end": [
+		{"speaker": "narrator", "text": "On the far bank, the group sits in the papyrus, soaked and shaking, and counts each other again."},
+		{"speaker": "aline", "text": "Everyone. Everyone is here.", "if": [{"not_flag": "ch7_group_separated"}]},
+		{"speaker": "aline", "text": "Not everyone. Not everyone, Emmanuel.", "if": [{"flag": "ch7_group_separated"}]},
+		{"speaker": "narrator", "text": "They walk on into the evening, until they find people who will hide them, and then people who will feed them, and then, many days later, soldiers who tell them that the killing on this side of the river is over.", "end": true}
+	]
+}

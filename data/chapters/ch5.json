@@ -1,0 +1,101 @@
+{
+	"id": "ch5",
+	"title": "The Road to Hope",
+	"setting": "Before dawn",
+	"world": "road",
+	"time_of_day": "overcast",
+	"ambience": "village_overcast",
+	"player_start": {"spot": "start", "yaw": 2.39},
+	"dialogue": "res://data/dialogue/ch5.json",
+
+	"fresh_start": {
+		"flags": {"ch3_sheltered_claudine": true, "ch3_sheltered_gasana": true, "ch4_shelter_kept_quiet": true},
+		"items": {"food": 3, "water": 3, "medicine": 2}
+	},
+
+	"missions": {
+		"ch5_main": {
+			"title": "The Road to Hope",
+			"main": true,
+			"objectives": [
+				{"id": "walk", "text": "Follow the valley path towards the river. Keep the group close", "marker": "innocent"},
+				{"id": "rest", "text": "Rest at the fallen tree. Share food and water", "marker": "rest"},
+				{"id": "roadblock", "text": "Get everyone past the roadblock unseen. Crouch (C) in the tall grass", "marker": "beyond_road"},
+				{"id": "stranger", "text": "Someone is hiding in the banana grove", "marker": "stranger"},
+				{"id": "shelter", "text": "Reach the abandoned houses before nightfall", "marker": "shelter"}
+			],
+			"on_complete": [{"event": "ch5_end"}]
+		},
+		"ch5_family": {
+			"title": "The Barred House",
+			"objectives": [
+				{"id": "find_pole", "text": "Find something to lever the planks off the door", "marker": "pole"},
+				{"id": "free", "text": "Free the family inside", "marker": "family_door"}
+			],
+			"on_complete": [{"set_flag": "ch5_freed_family"}]
+		}
+	},
+
+	"npcs": {
+		"beata": {
+			"name": "Mama Beata", "spot": "beata_r", "face": "start",
+			"look": {"shirt": "#d9822b", "dress": true, "headwrap": true, "headwrap_color": "#2f6b4f"},
+			"conversations": [{"conversation": "ch5_beata_bye"}]
+		},
+		"aline": {"name": "Aline", "spot": "start", "look": {"shirt": "#3f7fb0", "dress": true},
+			"conversations": [{"conversation": "ch5_aline"}]},
+		"gasana": {"name": "Gasana", "spot": "start", "look": {"shirt": "#5b7d4a", "pants": "#4a3f30", "hat": true},
+			"conversations": [{"conversation": "ch5_gasana"}]},
+		"solange": {"name": "Solange", "spot": "start", "look": {"shirt": "#6a8fb0", "dress": true, "headwrap": true, "headwrap_color": "#d0c090"},
+			"conversations": [{"conversation": "ch5_solange"}]},
+		"claudine": {"name": "Claudine", "spot": "start", "look": {"shirt": "#c4a23a", "dress": true, "headwrap": true, "headwrap_color": "#a83a2a"},
+			"conversations": [{"conversation": "ch5_claudine"}]},
+		"eric": {"name": "Eric", "spot": "start", "voice": "child", "look": {"shirt": "#4a8a5a", "pants": "#2a2a2a", "body_scale": 0.6}},
+		"innocent": {
+			"name": "Injured man", "spot": "innocent", "face": "start", "voice": "innocent",
+			"look": {"shirt": "#9a8a70", "pants": "#3a3a3a"},
+			"conversations": [
+				{"conversation": "ch5_innocent", "if": [{"not_flag": "ch5_met_innocent"}]},
+				{"conversation": "ch5_innocent_after"}
+			]
+		},
+		"mother": {
+			"name": "Voice inside the house", "spot": "family_mother", "face": "family_door", "voice": "mother",
+			"look": {"shirt": "#8a5a7a", "dress": true, "headwrap": true, "headwrap_color": "#3a5a8a"},
+			"conversations": [
+				{"conversation": "ch5_family_call", "if": [{"mission_not_started": "ch5_family"}]},
+				{"conversation": "ch5_family_free", "if": [{"objective": "ch5_family:free"}]},
+				{"conversation": "ch5_family_wait", "if": [{"mission_active": "ch5_family"}]},
+				{"conversation": "ch5_family_after"}
+			]
+		},
+		"stranger": {
+			"name": "Frightened boy", "spot": "stranger", "face": "beyond_road", "voice": "jean",
+			"look": {"shirt": "#a05a3a", "pants": "#2a2a40", "body_scale": 0.92},
+			"conversations": [
+				{"conversation": "ch5_stranger", "if": [{"objective": "ch5_main:stranger"}]},
+				{"conversation": "ch5_stranger_after", "if": [{"flag": "ch5_met_stranger"}]},
+				{"conversation": "ch5_stranger_early"}
+			]
+		},
+		"vestine": {
+			"name": "Vestine", "spot": "shelter_door", "voice": "vestine",
+			"look": {"shirt": "#7a9a6a", "dress": true, "headwrap": true, "headwrap_color": "#c08040"}
+		}
+	},
+
+	"cover": [
+		{"at": [-6, 8], "radius": 5.0},
+		{"at": [-9, -4], "radius": 5.0},
+		{"at": [-7, -15], "radius": 5.5},
+		{"at": [1, -24], "radius": 5.0},
+		{"at": [12, -27], "radius": 5.0},
+		{"at": [22, -28], "radius": 4.5}
+	],
+
+	"watchers": [
+		{"route": ["guard_a"], "facing": -0.71, "view": 14.0, "barks": ["Papers. Everyone shows papers.", "Nobody walks around this roadblock."]},
+		{"route": ["guard_b"], "facing": 2.59, "view": 14.0, "barks": ["Watch the grass.", "They hide like that, in the grass."]},
+		{"route": [[-24, -36], [2, -16.5], [36, 15]], "view": 12.0, "barks": ["Keep walking the road.", "Anyone on the path?"]}
+	]
+}

@@ -1,0 +1,182 @@
+{
+	"aline_intro": [
+		{"speaker": "aline", "text": "Emmanuel! You're late again!"},
+		{"speaker": "emmanuel", "text": "I was helping my father!"},
+		{"speaker": "aline", "text": "Your father must be the busiest man in Rwanda!"},
+		{"speaker": "narrator", "text": "They both laugh."},
+		{"speaker": "aline", "text": "Gasana is bringing in his beans today, and his back is not what it was. He asked if you could carry the sacks up to his storehouse."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "Of course. I'll go now.", "goto": "go_now"},
+			{"text": "Only if your mother saves me some of her cooking.", "goto": "joke", "do": [{"set_flag": "ch1_joked_with_aline"}]}
+		]},
+		{"id": "go_now", "speaker": "aline", "text": "Good. Meet me on the hill when you're done. I'll be under the big tree.", "goto": "beata"},
+		{"id": "joke", "speaker": "aline", "text": "Help first, eat later! Meet me on the hill when you're done. I'll be under the big tree."},
+		{"id": "beata", "speaker": "aline", "text": "Oh, and stop by Mama Beata's shop. She was asking for you.",
+		 "do": [{"start_mission": "ch1_main"}, {"start_mission": "ch1_market"}, {"start_mission": "ch1_neighbours"}],
+		 "end": true}
+	],
+
+	"aline_waiting": [
+		{"speaker": "aline", "text": "Gasana's beans won't carry themselves! I'll be waiting on the hill.", "end": true}
+	],
+
+	"aline_hill": [
+		{"speaker": "narrator", "text": "From the hilltop the whole village spreads out below: the market, the school, the football field, the red paths winding between the banana groves."},
+		{"speaker": "aline", "text": "You came! Gasana will be telling the whole market that you carried his beans.", "if": [{"flag": "ch1_helped_gasana"}]},
+		{"speaker": "emmanuel", "text": "He'll say I was slow."},
+		{"speaker": "aline", "text": "He'll say you were slower than his sons. And then he'll give you beans anyway."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "Offer Aline the water from Mama Beata.", "if": [{"item": "water"}], "goto": "water",
+			 "do": [{"take_item": "water"}, {"trust": "aline", "delta": 1}, {"set_flag": "ch1_shared_water"}]},
+			{"text": "Sit down beside her.", "goto": "sit"}
+		]},
+		{"id": "water", "speaker": "aline", "text": "You carried that all the way up here and didn't drink it yourself? Thank you."},
+		{"id": "sit", "speaker": "narrator", "text": "They sit together for a while. Somewhere below, a mother calls her children home for lunch."},
+		{"speaker": "aline", "text": "Do you think we'll still be here ten years from now?"},
+		{"speaker": "emmanuel", "text": "Of course. This is our home."},
+		{"speaker": "aline", "text": "Then promise me you'll become a teacher. Someone who makes people think for themselves."},
+		{"speaker": "emmanuel", "text": "And you will become a doctor who makes them healthy enough to listen."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"I promise.\"", "goto": "promise",
+			 "do": [{"set_flag": "ch1_promise_made"}, {"trust": "aline", "delta": 1}]},
+			{"text": "\"Only if you promise too.\"", "goto": "mutual",
+			 "do": [{"set_flag": "ch1_promise_made"}, {"set_flag": "ch1_promise_mutual"}, {"trust": "aline", "delta": 1}]}
+		]},
+		{"id": "promise", "speaker": "aline", "text": "Good. I'm holding you to it.", "goto": "brother"},
+		{"id": "mutual", "speaker": "aline", "text": "Then it's a promise. Both of us."},
+		{"id": "brother", "speaker": "aline", "text": "My little brother says he wants to be a pilot now. Last week it was a footballer."},
+		{"speaker": "emmanuel", "text": "Tell him to finish his reading first. Then he can fly wherever he wants."},
+		{"speaker": "aline", "text": "You see? You already sound like a teacher."},
+		{"speaker": "narrator", "text": "The afternoon passes slowly, the way good afternoons do.",
+		 "do": [{"progress": "ch1_main:meet_aline"}], "end": true}
+	],
+
+	"gasana_request": [
+		{"speaker": "gasana", "text": "Ah, Emmanuel. Aline said she would send you. Good morning."},
+		{"speaker": "emmanuel", "text": "Good morning, Gasana. She said you need some hands for the harvest."},
+		{"speaker": "gasana", "text": "Three sacks are waiting at the edge of the field. They need to be in the storehouse before the afternoon rain."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "Leave it to me.", "goto": "go"},
+			{"text": "Is your back very bad? Has anyone looked at it?", "goto": "back",
+			 "do": [{"set_flag": "ch1_asked_gasana_health"}, {"trust": "gasana", "delta": 1}]}
+		]},
+		{"id": "back", "speaker": "gasana", "text": "You sound like Aline. That girl will make a fine doctor one day. She already scolds like one."},
+		{"id": "go", "speaker": "gasana", "text": "Carry them on your head, the way your father taught you. The storehouse is just past the field.",
+		 "do": [{"progress": "ch1_main:talk_gasana"}], "end": true}
+	],
+
+	"gasana_waiting": [
+		{"speaker": "gasana", "text": "The sacks are by the edge of the field, and the storehouse is the round hut just up the path. Take your time.", "end": true}
+	],
+
+	"gasana_thanks": [
+		{"speaker": "gasana", "text": "All three! You worked faster than my sons ever did."},
+		{"speaker": "emmanuel", "text": "It was nothing."},
+		{"speaker": "gasana", "text": "It is never nothing when a neighbour helps. Here, take some beans home for your father.",
+		 "do": [{"give_item": "food"}, {"trust": "gasana", "delta": 1}, {"set_flag": "ch1_helped_gasana"}, {"progress": "ch1_main:return_gasana"}]},
+		{"speaker": "gasana", "text": "Now go. I saw Aline climbing the hill. Young people should enjoy days like this.", "end": true}
+	],
+
+	"gasana_after": [
+		{"speaker": "gasana", "text": "Thank you again, Emmanuel. Greet your father for me.", "end": true}
+	],
+
+	"beata_market": [
+		{"speaker": "beata", "text": "Emmanuel! There you are. Tell your father his paraffin for the lamp will come on Thursday's truck."},
+		{"speaker": "emmanuel", "text": "I'll tell him, Mama Beata."},
+		{"speaker": "beata", "text": "And take this water. It is hot today, and I know you will be running up that hill before long.",
+		 "do": [{"give_item": "water"}]},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "Thank you. How much do I owe you?", "goto": "owe", "do": [{"trust": "beata", "delta": 1}]},
+			{"text": "You know everything that happens in this village.", "goto": "hears", "do": [{"set_flag": "ch1_beata_hears_everything"}]}
+		]},
+		{"id": "owe", "speaker": "beata", "text": "Owe me? Put it on your father's account. The account of good neighbours.", "goto": "done"},
+		{"id": "hears", "speaker": "beata", "text": "A shopkeeper hears everything. The trick is knowing what is worth repeating."},
+		{"id": "done", "speaker": "beata", "text": "Go on, then.", "do": [{"progress": "ch1_market:visit_beata"}], "end": true}
+	],
+
+	"beata_default": [
+		{"speaker": "beata", "text": "Greet your father for me. And don't let Aline beat you up that hill.", "end": true}
+	],
+
+	"uwase_greet": [
+		{"speaker": "uwase", "text": "Emmanuel! The examination results will be posted on this board next month."},
+		{"speaker": "emmanuel", "text": "I'm trying not to think about it."},
+		{"speaker": "uwase", "text": "I have watched you help the younger ones with their reading. You explain things patiently, and you listen. That is most of teaching."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "Do you really think I could be a teacher?", "goto": "really",
+			 "do": [{"set_flag": "ch1_teacher_encouraged"}, {"trust": "uwase", "delta": 1}]},
+			{"text": "Patience is easy with children. It's the adults who are hard.", "goto": "adults"}
+		]},
+		{"id": "really", "speaker": "uwase", "text": "I don't think it. I know it. Come and help with the evening reading class when you can.", "goto": "end"},
+		{"id": "adults", "speaker": "uwase", "text": "Then you already understand the job."},
+		{"id": "end", "speaker": "uwase", "text": "Go on, enjoy your day.",
+		 "do": [{"set_flag": "ch1_met_uwase"}, {"progress": "ch1_neighbours:greet"}], "end": true}
+	],
+
+	"uwase_default": [
+		{"speaker": "uwase", "text": "Next month, Emmanuel. Try to sleep before then.", "end": true}
+	],
+
+	"claudine_greet": [
+		{"speaker": "claudine", "text": "Good morning, Emmanuel. My little one keeps asking when you will read him another story."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "Tell him Saturday, after the market.", "goto": "sat", "do": [{"set_flag": "ch1_promised_story"}, {"trust": "claudine", "delta": 1}]},
+			{"text": "Which story does he want?", "goto": "which"}
+		]},
+		{"id": "sat", "speaker": "claudine", "text": "He will hold you to that. He remembers everything.", "goto": "end"},
+		{"id": "which", "speaker": "claudine", "text": "The one about the hare who outwits the hyena. Every time. He knows it by heart, but he wants to hear you tell it."},
+		{"id": "end", "speaker": "claudine", "text": "Go well.", "do": [{"set_flag": "ch1_met_claudine"}, {"progress": "ch1_neighbours:greet"}], "end": true}
+	],
+
+	"claudine_default": [
+		{"speaker": "claudine", "text": "The queue at the water point was short today. A good sign.", "end": true}
+	],
+
+	"patrick_greet": [
+		{"speaker": "patrick", "text": "Emmanuel! You still owe me a rematch."},
+		{"speaker": "emmanuel", "text": "You only won last time because the ball went flat."},
+		{"speaker": "patrick", "text": "Excuses! The boys from the trading centre are coming later. Play with us."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "Maybe after I see Aline.", "goto": "aline"},
+			{"text": "Not today. Gasana needs help.", "goto": "help"}
+		]},
+		{"id": "aline", "speaker": "patrick", "text": "Always Aline. Fine, fine. Next time, then.", "goto": "end"},
+		{"id": "help", "speaker": "patrick", "text": "Always helping someone. One day you will have to look after yourself, my friend."},
+		{"id": "end", "speaker": "patrick", "text": "Go on. I'll keep the ball warm.",
+		 "do": [{"set_flag": "ch1_met_patrick"}, {"progress": "ch1_neighbours:greet"}], "end": true}
+	],
+
+	"patrick_default": [
+		{"speaker": "patrick", "text": "The ball is still half flat. Bring a pump next time.", "end": true}
+	],
+
+	"joseph_morning": [
+		{"speaker": "joseph", "text": "Back already? I thought Aline would keep you all day."},
+		{"speaker": "emmanuel", "text": "Gasana needs help with his beans."},
+		{"speaker": "joseph", "text": "Then go. A neighbour's harvest is everyone's harvest.", "end": true}
+	],
+
+	"joseph_proud": [
+		{"speaker": "joseph", "text": "Gasana passed by. He says you carried his whole harvest on your head."},
+		{"speaker": "emmanuel", "text": "Only three sacks, Papa."},
+		{"speaker": "joseph", "text": "Three sacks is a whole harvest when your back is old. I am proud of you.", "end": true}
+	],
+
+	"evening_radio": [
+		{"speaker": "radio", "text": "[Static.] …the political situation in the capital remains tense… [A presenter's voice grows harsh and angry, speaking of 'enemies' living among ordinary people.]",
+		 "text_reduced": "[The radio carries tense political news.]"},
+		{"speaker": "narrator", "text": "Joseph reaches over and switches the radio off. The room is suddenly very quiet."},
+		{"speaker": "joseph", "text": "Some words can become weapons, my son. Never let someone convince you that another human being is your enemy simply because of who they are."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"I won't, Papa.\"", "goto": "wont", "do": [{"set_flag": "ch1_evening_choice", "value": "promise"}, {"trust": "joseph", "delta": 1}]},
+			{"text": "\"Why do they talk like that on the radio?\"", "goto": "why", "do": [{"set_flag": "ch1_evening_choice", "value": "question"}]},
+			{"text": "[Say nothing. Look at the silent radio.]", "goto": "silent", "do": [{"set_flag": "ch1_evening_choice", "value": "silent"}]}
+		]},
+		{"id": "wont", "speaker": "joseph", "text": "Good. Remember it when it is hard to remember. That is when it matters.", "goto": "after"},
+		{"id": "why", "speaker": "joseph", "text": "Because frightened people are easier to lead. Fear can turn neighbours into a crowd. Do not let it turn you.", "goto": "after"},
+		{"id": "silent", "speaker": "joseph", "text": "Silence is all right tonight. But one day you may have to speak. I hope you will."},
+		{"id": "after", "speaker": "joseph", "text": "Gasana says you worked hard today. Thank you for that.", "if": [{"flag": "ch1_helped_gasana"}]},
+		{"speaker": "joseph", "text": "Go and sleep. Tomorrow there is work, and the day after there is more.", "end": true}
+	]
+}
