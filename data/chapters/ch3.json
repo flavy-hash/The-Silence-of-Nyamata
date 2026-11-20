@@ -1,0 +1,112 @@
+{
+	"id": "ch3",
+	"title": "The Night Everything Changed",
+	"setting": "6 April 1994",
+	"time_of_day": "night",
+	"ambience": "village_night",
+	"player_start": {"spot": "home_door", "yaw": 0.0},
+	"dialogue": "res://data/dialogue/ch3.json",
+
+	"fresh_start": {"flags": {"ch2_door_promise": "yes"}},
+
+	"missions": {
+		"ch3_main": {
+			"title": "The Night Everything Changed",
+			"main": true,
+			"objectives": [
+				{"id": "find_sandal", "text": "Search the football field, where Olivier liked to play. Stay low (C) and keep to the tall grass", "marker": "sandal"},
+				{"id": "find_witness", "text": "Find someone who might have seen Olivier", "marker": "claudine"},
+				{"id": "reach_beata", "text": "Go to the back window of Mama Beata's shop", "marker": "beata"},
+				{"id": "return_home", "text": "Return home without being seen", "marker": "joseph"}
+			],
+			"on_complete": [{"event": "ch3_end"}]
+		},
+		"ch3_gasana": {
+			"title": "Old Neighbour",
+			"objectives": [
+				{"id": "find", "text": "Check on Gasana at his storehouse", "marker": "gasana"},
+				{"id": "bring", "text": "Bring Gasana to your father's house", "marker": "joseph"}
+			],
+			"on_complete": [{"set_flag": "ch3_sheltered_gasana"}]
+		},
+		"ch3_claudine": {
+			"title": "Safe Passage",
+			"objectives": [
+				{"id": "bring", "text": "Bring Claudine and Eric to your father's house", "marker": "joseph"}
+			],
+			"on_complete": [{"set_flag": "ch3_sheltered_claudine"}]
+		}
+	},
+
+	"npcs": {
+		"joseph": {
+			"name": "Joseph", "spot": "joseph", "face": "home_door",
+			"look": {"shirt": "#7a5a3a", "pants": "#3a3a35", "hat": true},
+			"conversations": [{"conversation": "ch3_joseph_wait"}]
+		},
+		"aline": {
+			"name": "Aline", "spot": "evening_player", "face": "home_door",
+			"look": {"shirt": "#3f7fb0", "dress": true},
+			"conversations": [{"conversation": "ch3_aline_wait"}]
+		},
+		"claudine": {
+			"name": "Claudine", "spot": "claudine_hide", "yaw": 0.0,
+			"look": {"shirt": "#c4a23a", "dress": true, "headwrap": true, "headwrap_color": "#a83a2a"},
+			"conversations": [
+				{"conversation": "ch3_claudine", "if": [{"not_flag": "ch3_met_claudine"}]},
+				{"conversation": "ch3_claudine_follow", "if": [{"mission_active": "ch3_claudine"}]},
+				{"conversation": "ch3_claudine_stay"}
+			]
+		},
+		"eric": {
+			"name": "Eric", "spot": [-23.3, -6.6], "yaw": 0.0, "voice": "child",
+			"look": {"shirt": "#4a8a5a", "pants": "#2a2a2a", "body_scale": 0.6}
+		},
+		"gasana": {
+			"name": "Gasana", "spot": "gasana_hide", "yaw": 1.2,
+			"look": {"shirt": "#5b7d4a", "pants": "#4a3f30", "hat": true},
+			"conversations": [
+				{"conversation": "ch3_gasana", "if": [{"objective": "ch3_gasana:find"}]},
+				{"conversation": "ch3_gasana_follow", "if": [{"objective": "ch3_gasana:bring"}]},
+				{"conversation": "ch3_gasana_stay"}
+			]
+		},
+		"beata": {
+			"name": "Mama Beata", "spot": [15.3, 0.8], "yaw": 1.5708,
+			"look": {"shirt": "#d9822b", "dress": true, "headwrap": true, "headwrap_color": "#2f6b4f"},
+			"conversations": [
+				{"conversation": "ch3_beata", "if": [{"objective": "ch3_main:reach_beata"}]},
+				{"conversation": "ch3_beata_after"}
+			]
+		}
+	},
+
+	"cover": [
+		{"at": [-29, 24], "radius": 4.0},
+		{"at": [-14, 26], "radius": 4.5},
+		{"at": [-6, 32], "radius": 4.0},
+		{"at": [7, 31], "radius": 5.0},
+		{"at": [20, 33], "radius": 5.0},
+		{"at": "field_cover", "radius": 5.0},
+		{"at": [46, 31], "radius": 3.5},
+		{"at": [-19.5, -8.5], "radius": 3.5},
+		{"at": [-27, -30], "radius": 4.0},
+		{"at": [-20, -44], "radius": 3.5},
+		{"at": "shop_back", "radius": 3.0},
+		{"at": [8, -14], "radius": 4.0},
+		{"at": [-8, -18], "radius": 4.0}
+	],
+
+	"watchers": [
+		{"route": [[1.5, 9.5]], "facing": 0.0, "view": 12.0,
+		 "barks": ["Nobody passes this road tonight.", "Check every face."]},
+		{"route": [[-1.0, -9.5]], "facing": 3.14159, "view": 12.0,
+		 "barks": ["Keep the fire going.", "They can't have gone far."]},
+		{"route": [[0.5, 46], [0.5, 22]], "view": 11.0,
+		 "barks": ["Look behind the houses.", "Did you hear that?"]},
+		{"route": [[22, -4], [23, 8], [34, 14], [44, 19], [34, 14], [23, 8]], "view": 11.0,
+		 "barks": ["Search the school.", "Nobody sleeps tonight."]},
+		{"route": [[-14, -11], [-33, -20], [-26, -33]], "view": 11.0,
+		 "barks": ["Check the fields.", "Who lives in that house?"]}
+	]
+}

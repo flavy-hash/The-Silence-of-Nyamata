@@ -1,0 +1,10 @@
+[
+	{"id": "ch1", "number": 1, "title": "The Days of Friendship", "scene": "res://scenes/chapters/chapter_1.tscn"},
+	{"id": "ch2", "number": 2, "title": "The Radio", "scene": "res://scenes/chapters/chapter_2.tscn"},
+	{"id": "ch3", "number": 3, "title": "The Night Everything Changed", "scene": "res://scenes/chapters/chapter_3.tscn"},
+	{"id": "ch4", "number": 4, "title": "The Hidden Room", "scene": "res://scenes/chapters/chapter_4.tscn"},
+	{"id": "ch5", "number": 5, "title": "The Road to Hope", "scene": "res://scenes/chapters/chapter_5.tscn"},
+	{"id": "ch6", "number": 6, "title": "The Betrayal", "scene": "res://scenes/chapters/chapter_6.tscn"},
+	{"id": "ch7", "number": 7, "title": "The Crossing", "scene": "res://scenes/chapters/chapter_7.tscn"},
+	{"id": "ch8", "number": 8, "title": "The End of the Silence", "scene": "res://scenes/chapters/chapter_8.tscn"}
+]

@@ -1,0 +1,113 @@
+{
+	"id": "ch8",
+	"title": "The End of the Silence",
+	"setting": "Weeks later",
+	"world": "village",
+	"damaged": true,
+	"time_of_day": "overcast",
+	"ambience": "village_overcast",
+	"player_start": {"spot": "aline_return", "yaw": 3.14159},
+	"dialogue": "res://data/dialogue/ch8.json",
+
+	"endings": {
+		"seeds": {
+			"title": "The Seeds of Tomorrow",
+			"lines": [
+				"Emmanuel, Aline and those who walked with them came home, and began to rebuild.",
+				"Emmanuel became a teacher. Aline went back to her studies, and became a doctor.",
+				"Grief stayed. Reconciliation was neither simple nor quick. Some days it did not seem possible at all.",
+				"But they began. Quietly, and together."
+			]
+		},
+		"names": {
+			"title": "The Names We Remember",
+			"lines": [
+				"Emmanuel survived. Not everyone he tried to help did.",
+				"He gathered names, and stories, and wrote them down, so that the children who came after would know what hatred, propaganda and dehumanisation had done, and how it began: with words.",
+				"He became a teacher. Every year, his first lesson begins with a name."
+			]
+		},
+		"long_road": {
+			"title": "A Long Road Home",
+			"lines": [
+				"Emmanuel and Aline survived. Not everyone who reached the river with them crossed it together.",
+				"For months, Emmanuel searched: lists of the living pinned up at the camps, names read out on the radio, every face in every market.",
+				"He has not found everyone yet. He has not stopped looking.",
+				"There is a school to rebuild. He will rebuild it. But first, he is still searching."
+			]
+		}
+	},
+	"rebuild": {
+		"school": "Within a year, the school had a roof again. Emmanuel teaches in the classroom where Madame Uwase once taught him, and she teaches next door.",
+		"clinic": "Aline and Emmanuel reopened the health post one room at a time. The first thing Aline did was write her own name on the door, as a promise.",
+		"homes": "That first year, Emmanuel rebuilt walls, one family at a time, for people who had nowhere else to return to.",
+		"garden": "Around the memorial a garden grew. People come to sit there, and read the names, and say them out loud."
+	},
+	"aftermath": {
+		"patrick": "Patrick was arrested. He is in prison, awaiting trial. He will have to face what he did.",
+		"patrick_asked": "Some survivors say he sent the searchers the wrong way that last morning. It does not undo what he did.",
+		"vestine": "Vestine came to the memorial once, and stood at the back, and wept. Aline went and stood beside her."
+	},
+	"opening_captions": [
+		"Weeks later.",
+		"Soldiers of the Rwandan Patriotic Army reached the area. For those who had survived, the killing there was over.",
+		"The grief was not."
+	],
+
+	"fresh_start": {
+		"flags": {"ch3_sheltered_claudine": true, "ch3_sheltered_gasana": true, "ch3_found_sandal": true,
+			"ch5_treated_innocent": true, "ch5_helped_innocent": true, "ch7_cared_gasana": true}
+	},
+
+	"missions": {
+		"ch8_main": {
+			"title": "The End of the Silence",
+			"main": true,
+			"objectives": [
+				{"id": "beata", "text": "Go to Mama Beata's shop", "marker": "beata"},
+				{"id": "remember", "text": "Visit the places that mattered: your father's house, the school, the hill", "count": 3},
+				{"id": "memorial", "text": "Join the others at the memorial in the square", "marker": "memorial"}
+			],
+			"on_complete": [{"event": "ch8_ending"}]
+		}
+	},
+
+	"npcs": {
+		"aline": {"name": "Aline", "spot": "aline_return", "look": {"shirt": "#3f7fb0", "dress": true},
+			"conversations": [{"conversation": "ch8_aline"}]},
+		"beata": {
+			"name": "Mama Beata", "spot": "beata", "yaw": -1.5708,
+			"look": {"shirt": "#d9822b", "dress": true, "headwrap": true, "headwrap_color": "#2f6b4f"},
+			"conversations": [
+				{"conversation": "ch8_beata", "if": [{"objective": "ch8_main:beata"}]},
+				{"conversation": "ch8_beata_after"}
+			]
+		},
+		"olivier": {"name": "Olivier", "spot": "olivier", "face": "aline_return", "voice": "didier",
+			"look": {"shirt": "#d0b080", "pants": "#3a3a50", "body_scale": 0.7},
+			"conversations": [{"conversation": "ch8_olivier"}]},
+		"uwase": {
+			"name": "Madame Uwase", "spot": "uwase", "yaw": -1.5708,
+			"look": {"shirt": "#7d4a8a", "dress": true},
+			"conversations": [
+				{"conversation": "ch8_uwase", "if": [{"objective": "ch8_main:remember"}, {"not_flag": "ch8_visited_school"}]},
+				{"conversation": "ch8_uwase_after"}
+			]
+		},
+		"claudine": {"name": "Claudine", "spot": "claudine", "yaw": 2.356,
+			"look": {"shirt": "#c4a23a", "dress": true, "headwrap": true, "headwrap_color": "#a83a2a"},
+			"conversations": [{"conversation": "ch8_claudine"}]},
+		"eric": {"name": "Eric", "spot": [-11.0, -3.0], "face": "claudine", "voice": "child",
+			"look": {"shirt": "#4a8a5a", "pants": "#2a2a2a", "body_scale": 0.6},
+			"conversations": [{"conversation": "ch8_eric"}]},
+		"gasana": {"name": "Gasana", "spot": "gasana", "face": "sack_1",
+			"look": {"shirt": "#5b7d4a", "pants": "#4a3f30", "hat": true},
+			"conversations": [{"conversation": "ch8_gasana"}]},
+		"solange": {"name": "Solange", "spot": [-4.5, 3.5], "face": "memorial",
+			"look": {"shirt": "#6a8fb0", "dress": true, "headwrap": true, "headwrap_color": "#d0c090"},
+			"conversations": [{"conversation": "ch8_solange"}]},
+		"innocent": {"name": "Innocent", "spot": [1.0, -4.0], "face": "memorial",
+			"look": {"shirt": "#9a8a70", "pants": "#3a3a3a"},
+			"conversations": [{"conversation": "ch8_innocent"}]}
+	}
+}

@@ -1,0 +1,8 @@
+{
+	"water": {"name": "Water", "category": "survival", "description": "A bottle of clean drinking water."},
+	"food": {"name": "Food", "category": "survival", "description": "Something to eat. Today it is a small bag of Gasana's beans."},
+	"medicine": {"name": "Medicine", "category": "survival", "description": "Basic first-aid supplies."},
+	"blanket": {"name": "Blanket", "category": "survival", "description": "A heavy blanket from the chest at home."},
+	"salt": {"name": "Salt", "category": "errand", "description": "A small bag of salt from Mama Beata's shop, for your father."},
+	"bean_sack": {"name": "Sack of beans", "category": "task", "description": "Heavy. Gasana's harvest, bound for the storehouse."}
+}

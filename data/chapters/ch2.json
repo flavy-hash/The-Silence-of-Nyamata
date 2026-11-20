@@ -1,0 +1,128 @@
+{
+	"id": "ch2",
+	"title": "The Radio",
+	"setting": "Rural Rwanda, early 1994",
+	"time_of_day": "overcast",
+	"ambience": "village_overcast",
+	"player_start": {"spot": "home_door", "yaw": 0.0},
+	"dialogue": "res://data/dialogue/ch2.json",
+
+	"opening_captions": [
+		"Months passed.",
+		"The radio was everywhere now: in the market, in the bars, in homes along every path.",
+		"Some people turned it up. Others walked a little faster."
+	],
+
+	"missions": {
+		"ch2_main": {
+			"title": "The Radio",
+			"main": true,
+			"objectives": [
+				{"id": "buy_salt", "text": "Buy salt at Mama Beata's shop", "marker": "beata"},
+				{"id": "listen", "text": "Listen to what people in the village are saying", "count": 3},
+				{"id": "read_notice", "text": "Read the notice pinned to the school board", "marker": "notice"},
+				{"id": "find_aline", "text": "Find Aline. She often goes up the hill", "marker": "aline"},
+				{"id": "face_patrick", "text": "Patrick is waiting at the football field", "marker": "patrick"},
+				{"id": "go_home", "text": "Go home to your father", "marker": "joseph"}
+			],
+			"on_complete": [{"event": "ch2_evening"}]
+		},
+		"ch2_kids": {
+			"title": "One Team",
+			"objectives": [
+				{"id": "talk_children", "text": "Help the children at the football field play together again", "marker": "kid_0"}
+			],
+			"on_complete": [{"set_flag": "ch2_kids_together"}, {"event": "ch2_kids_together"}]
+		}
+	},
+
+	"npcs": {
+		"joseph": {
+			"name": "Joseph", "spot": "joseph", "face": "home_door",
+			"look": {"shirt": "#7a5a3a", "pants": "#3a3a35", "hat": true},
+			"conversations": [
+				{"conversation": "ch2_joseph_home", "if": [{"objective": "ch2_main:go_home"}]},
+				{"conversation": "ch2_joseph_day"}
+			]
+		},
+		"beata": {
+			"name": "Mama Beata", "spot": "beata", "yaw": -1.5708,
+			"look": {"shirt": "#d9822b", "dress": true, "headwrap": true, "headwrap_color": "#2f6b4f"},
+			"conversations": [
+				{"conversation": "ch2_beata", "if": [{"objective": "ch2_main:buy_salt"}]},
+				{"conversation": "ch2_beata_default"}
+			]
+		},
+		"bosco": {
+			"name": "Bosco", "spot": "bosco", "yaw": 0.0,
+			"look": {"shirt": "#8a6a4a", "pants": "#2c2c30"},
+			"conversations": [
+				{"conversation": "ch2_bosco", "if": [{"objective": "ch2_main:listen"}, {"not_flag": "ch2_heard_bosco"}]},
+				{"conversation": "ch2_bosco_default"}
+			],
+			"barks": [{"text": "Quiet! Listen to this. Listen to what they're saying!"}]
+		},
+		"uwase": {
+			"name": "Madame Uwase", "spot": "uwase", "yaw": -1.5708,
+			"look": {"shirt": "#7d4a8a", "dress": true},
+			"conversations": [
+				{"conversation": "ch2_uwase", "if": [{"objective": "ch2_main:listen"}, {"not_flag": "ch2_heard_uwase"}]},
+				{"conversation": "ch2_uwase_default"}
+			]
+		},
+		"gasana": {
+			"name": "Gasana", "spot": "gasana", "face": "sack_1",
+			"look": {"shirt": "#5b7d4a", "pants": "#4a3f30", "hat": true},
+			"conversations": [
+				{"conversation": "ch2_gasana", "if": [{"objective": "ch2_main:listen"}, {"not_flag": "ch2_heard_gasana"}]},
+				{"conversation": "ch2_gasana_default"}
+			]
+		},
+		"claudine": {
+			"name": "Claudine", "spot": "claudine", "yaw": 2.356,
+			"look": {"shirt": "#c4a23a", "dress": true, "headwrap": true, "headwrap_color": "#a83a2a"},
+			"conversations": [
+				{"conversation": "ch2_claudine", "if": [{"objective": "ch2_main:listen"}, {"not_flag": "ch2_heard_claudine"}]},
+				{"conversation": "ch2_claudine_default"}
+			]
+		},
+		"aline": {
+			"name": "Aline", "spot": "aline_hill", "face": "beata",
+			"look": {"shirt": "#3f7fb0", "dress": true},
+			"conversations": [
+				{"conversation": "ch2_aline", "if": [{"objective": "ch2_main:find_aline"}]},
+				{"conversation": "ch2_aline_after", "if": [{"flag": "ch2_saw_aline"}]},
+				{"conversation": "ch2_aline_early"}
+			]
+		},
+		"patrick": {
+			"name": "Patrick", "spot": "patrick", "face": "kids",
+			"look": {"shirt": "#5a5a7a", "pants": "#2c2c30"},
+			"conversations": [
+				{"conversation": "ch2_patrick", "if": [{"objective": "ch2_main:face_patrick"}]},
+				{"conversation": "ch2_patrick_after", "if": [{"flag": "ch2_patrick_done"}]},
+				{"conversation": "ch2_patrick_early"}
+			]
+		},
+		"stranger_1": {
+			"name": "Stranger", "spot": "stranger_1", "face": "patrick", "voice": "bosco",
+			"look": {"shirt": "#2e2e2e", "pants": "#1e1e22"}
+		},
+		"stranger_2": {
+			"name": "Stranger", "spot": "stranger_2", "face": "patrick", "voice": "bosco",
+			"look": {"shirt": "#3a3428", "pants": "#1e1e22", "hat": true}
+		}
+	},
+
+	"kids": [
+		{"name": "Didier", "voice": "didier", "look": {"shirt": "#e0e0d8", "pants": "#2a3a6a", "body_scale": 0.66},
+		 "conversations": [
+			{"conversation": "ch2_didier", "if": [{"not_flag": "ch2_kids_together"}]},
+			{"conversation": "ch2_didier_after"}
+		 ]},
+		{"name": "Kevin", "look": {"shirt": "#d9a441", "pants": "#3a2a2a", "body_scale": 0.62}},
+		{"name": "Grace", "look": {"shirt": "#b84a5a", "dress": true, "body_scale": 0.64}},
+		{"name": "Eric", "look": {"shirt": "#4a8a5a", "pants": "#2a2a2a", "body_scale": 0.6},
+		 "barks": [{"text": "Why won't they let me play? I didn't do anything.", "if": [{"not_flag": "ch2_kids_together"}]}]}
+	]
+}

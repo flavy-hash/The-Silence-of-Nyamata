@@ -1,0 +1,145 @@
+{
+	"ch5_opening": [
+		{"speaker": "beata", "text": "This is as far as I go. Follow the valley path down. Past the old road, past the banana groves, to the empty houses at the edge of the marsh. From there, the river."},
+		{"speaker": "beata", "text": "No road is guaranteed safe. Keep close, help when you can, and don't let panic make the decisions."},
+		{"speaker": "emmanuel", "text": "Mama Beata, my father—"},
+		{"speaker": "beata", "text": "I will look in on him. And I will keep looking for Olivier. Go, while it is still dark enough to hide in.",
+		 "do": [{"start_mission": "ch5_main"}], "end": true}
+	],
+
+	"ch5_beata_bye": [
+		{"speaker": "beata", "text": "Go. Keep close to each other.", "end": true}
+	],
+
+	"ch5_aline": [
+		{"speaker": "aline", "text": "Keep walking. If we stop to think about it, I don't think I'll be able to start again.", "end": true}
+	],
+	"ch5_gasana": [
+		{"speaker": "gasana", "text": "Don't slow down for me, Emmanuel. My legs are slow, but they are stubborn.", "end": true}
+	],
+	"ch5_solange": [
+		{"speaker": "solange", "text": "I keep looking at every face we pass. In case one of them is my mother.", "end": true}
+	],
+	"ch5_claudine": [
+		{"speaker": "claudine", "text": "Eric is counting his steps. It helps him. I think it helps me too.", "end": true}
+	],
+
+	"ch5_innocent": [
+		{"speaker": "narrator", "text": "A man is sitting against the tree beside the path, holding his leg. The cloth he has wrapped around it is dark and wet."},
+		{"speaker": "innocent", "text": "Please. Don't be afraid. I can't walk any further. I've been here since yesterday."},
+		{"speaker": "aline", "text": "We can't help everyone we meet."},
+		{"speaker": "emmanuel", "text": "We can still help the person in front of us. Let's do what we can."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "[Use medicine] Ask Aline to clean and bind the wound.", "if": [{"item": "medicine"}], "goto": "treat",
+			 "do": [{"take_item": "medicine"}, {"set_flag": "ch5_treated_innocent"}, {"set_flag": "ch5_helped_innocent"}, {"trust": "aline", "delta": 1}]},
+			{"text": "[Give water] Leave him water and keep going.", "if": [{"item": "water"}], "goto": "water",
+			 "do": [{"take_item": "water"}, {"set_flag": "ch5_helped_innocent"}, {"set_flag": "ch5_left_innocent"}]},
+			{"text": "[Keep walking]", "goto": "pass", "do": [{"set_flag": "ch5_passed_innocent"}]}
+		]},
+		{"id": "treat", "speaker": "narrator", "text": "Aline kneels. Her hands are steady. She cleans the wound, binds it tight, and helps him stand."},
+		{"speaker": "innocent", "text": "I thought no one would stop. Thank you for stopping."},
+		{"speaker": "innocent", "text": "My name is Innocent. If you will have me, I will walk with you. Slowly.", "goto": "end"},
+		{"id": "water", "speaker": "innocent", "text": "I thought no one would stop. Thank you for stopping."},
+		{"speaker": "innocent", "text": "Go on. My brother said he would come back for me. I will wait for him here.", "goto": "end"},
+		{"id": "pass", "speaker": "narrator", "text": "They walk on. Emmanuel does not look back, and then he does."},
+		{"id": "end", "do": [{"set_flag": "ch5_met_innocent"}, {"progress": "ch5_main:walk"}], "end": true}
+	],
+
+	"ch5_innocent_after": [
+		{"speaker": "innocent", "text": "Go well. And thank you.", "end": true}
+	],
+
+	"ch5_family_call": [
+		{"speaker": "narrator", "text": "Planks have been nailed across the door of the house. From inside, a woman's voice, very quiet."},
+		{"speaker": "mother", "text": "Is someone there? Please. They nailed us in two days ago. My children are with me."},
+		{"speaker": "aline", "text": "Emmanuel, if anyone comes down the path while we're here—"},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"We'll get you out. Hold on.\"", "goto": "help", "do": [{"start_mission": "ch5_family"}]},
+			{"text": "\"I'm sorry. We can't stop.\"", "goto": "leave", "do": [{"set_flag": "ch5_left_family"}]}
+		]},
+		{"id": "help", "speaker": "mother", "text": "God bless you. There should be a hoe or a pole somewhere by the field.", "end": true},
+		{"id": "leave", "speaker": "mother", "text": "Then pray for us. Please.", "end": true}
+	],
+
+	"ch5_family_wait": [
+		{"speaker": "mother", "text": "Are you still there? Please hurry.", "end": true}
+	],
+
+	"ch5_pole": [
+		{"speaker": "narrator", "text": "An old hoe handle lies by the edge of the field. It will do.",
+		 "do": [{"progress": "ch5_family:find_pole"}], "end": true}
+	],
+
+	"ch5_family_free": [
+		{"speaker": "narrator", "text": "Emmanuel works the hoe handle under the first plank. The nails shriek. Everyone freezes. Nothing. The second plank. The third."},
+		{"speaker": "narrator", "text": "A woman and two children step out into the grey light, blinking."},
+		{"speaker": "mother", "text": "My name is Mukamana. I will never forget your faces."},
+		{"speaker": "mother", "text": "We are going to the marsh. People are hiding there in the papyrus. But listen: when you reach the river, cross where the water is wide and quiet. Never where it is narrow and fast."},
+		{"speaker": "emmanuel", "text": "Wide and quiet. Thank you."},
+		{"speaker": "mother", "text": "No. Thank you.",
+		 "do": [{"set_flag": "ch5_knows_ford"}, {"trust": "aline", "delta": 1}, {"progress": "ch5_family:free"}], "end": true}
+	],
+
+	"ch5_family_after": [
+		{"speaker": "narrator", "text": "The house is silent now.", "end": true}
+	],
+
+	"ch5_rest": [
+		{"speaker": "narrator", "text": "They sit on the fallen tree, close together, listening to the valley."},
+		{"speaker": "aline", "text": "Everyone eats a little and drinks a little. Not more. We don't know how long this will take.", "if": [{"item": "food"}, {"item": "water"}],
+		 "do": [{"take_item": "food"}, {"take_item": "water"}, {"set_flag": "ch5_group_ate"}]},
+		{"speaker": "aline", "text": "We have nothing left to share. We'll have to keep going hungry.", "if": [{"not_flag": "ch5_group_ate"}],
+		 "do": [{"set_flag": "ch5_group_hungry"}]},
+		{"speaker": "gasana", "text": "Ah. My legs say thank you."},
+		{"speaker": "aline", "text": "There's a road ahead. A dirt road. I heard voices on it earlier. We should go around through the tall grass."},
+		{"speaker": "emmanuel", "text": "Stay low, all of you. Do exactly what I do.",
+		 "do": [{"progress": "ch5_main:rest"}], "end": true}
+	],
+
+	"ch5_stranger_early": [
+		{"speaker": "narrator", "text": "Something moves in the banana grove, then goes very still.", "end": true}
+	],
+
+	"ch5_stranger": [
+		{"speaker": "narrator", "text": "Deep in the grove, a boy of about fifteen is crouched between the trunks, holding a stick like a weapon he does not know how to use."},
+		{"speaker": "jean", "text": "Stay back! Are you with them? Are you with the roadblock?"},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"No. We're running too. We're trying to reach the river.\"", "goto": "calm"},
+			{"text": "[Let Aline speak.]", "goto": "aline"}
+		]},
+		{"id": "calm", "speaker": "jean", "text": "Everyone says that. Everyone says they're not with them.", "goto": "aline"},
+		{"id": "aline", "speaker": "aline", "text": "Jean? Jean from the school in town? It's Aline. I used to help your sister with her lessons."},
+		{"speaker": "jean", "text": "Aline? They took my sister away on the second day. I don't know where."},
+		{"speaker": "jean", "text": "I haven't eaten in three days."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "[Share food] Give Jean some of the group's food.", "if": [{"item": "food"}], "goto": "fed",
+			 "do": [{"take_item": "food"}, {"set_flag": "ch5_fed_stranger"}]},
+			{"text": "\"We have almost nothing left. I'm sorry.\"", "goto": "sorry"}
+		]},
+		{"id": "fed", "speaker": "jean", "text": "Thank you. I'll pay you back one day. I swear it.", "goto": "info"},
+		{"id": "sorry", "speaker": "jean", "text": "I understand. Nobody has anything any more."},
+		{"id": "info", "speaker": "jean", "text": "The empty houses past the grove. Nobody goes there now. A woman from the next hill, Vestine, brings water to people hiding there. She's kind."},
+		{"speaker": "jean", "text": "I'm not coming with you. I'm going back for my sister. Don't try to stop me."},
+		{"speaker": "aline", "text": "Jean, please be careful."},
+		{"speaker": "jean", "text": "Everyone keeps saying that too.",
+		 "do": [{"set_flag": "ch5_met_stranger"}, {"progress": "ch5_main:stranger"}], "end": true}
+	],
+
+	"ch5_stranger_after": [
+		{"speaker": "narrator", "text": "Jean is gone.", "end": true}
+	],
+
+	"ch5_end": [
+		{"speaker": "narrator", "text": "The empty houses stand at the edge of the marsh, doors open, nobody inside. As the light goes, a woman comes up the path carrying a water jug."},
+		{"speaker": "vestine", "text": "Don't be afraid. My name is Vestine. I bring water to the people who hide here. Drink."},
+		{"speaker": "aline", "text": "Emmanuel, we don't know her."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"We have to trust someone, Aline.\"", "goto": "trust", "do": [{"set_flag": "ch5_trusted_vestine"}]},
+			{"text": "\"Thank you. We'll only stay one night.\"", "goto": "night"}
+		]},
+		{"id": "trust", "speaker": "aline", "text": "I know. That's what frightens me.", "goto": "end"},
+		{"id": "night", "speaker": "vestine", "text": "One night. Then go, quickly. It is better that way."},
+		{"id": "end", "speaker": "narrator", "text": "They sleep in the abandoned house, all of them in one room, taking turns to keep watch.",
+		 "do": [{"give_item": "water", "count": 2}], "end": true}
+	]
+}

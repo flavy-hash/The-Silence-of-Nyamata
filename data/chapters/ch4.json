@@ -1,0 +1,81 @@
+{
+	"id": "ch4",
+	"title": "The Hidden Room",
+	"setting": "Days later",
+	"world": "compound",
+	"time_of_day": "night",
+	"ambience": "village_night",
+	"player_start": {"spot": "start", "yaw": 3.14159},
+	"dialogue": "res://data/dialogue/ch4.json",
+
+	"fresh_start": {"flags": {"ch3_sheltered_claudine": true, "ch3_sheltered_gasana": true, "ch3_found_sandal": true, "ch3_beata_searching": true}},
+
+	"missions": {
+		"ch4_main": {
+			"title": "The Hidden Room",
+			"main": true,
+			"objectives": [
+				{"id": "gather", "text": "Gather food, blankets and water for the hidden room. Stay out of sight of the gate", "count": 3},
+				{"id": "beata", "text": "Mama Beata is at the back window", "marker": "beata"},
+				{"id": "supply", "text": "Bring the supplies to Aline in the storage room", "marker": "aline"},
+				{"id": "conceal", "text": "Hide every sign that anyone else lives here", "count": 2},
+				{"id": "hide", "text": "Go into the storage room. Your father will close it behind you", "marker": "storage"},
+				{"id": "silence", "text": "Stay silent. Keep everyone calm"}
+			],
+			"on_complete": [{"event": "ch4_leave"}]
+		}
+	},
+
+	"npcs": {
+		"joseph": {
+			"name": "Joseph", "spot": "joseph", "face": "start",
+			"look": {"shirt": "#7a5a3a", "pants": "#3a3a35", "hat": true},
+			"conversations": [{"conversation": "ch4_joseph"}]
+		},
+		"aline": {
+			"name": "Aline", "spot": "aline_s", "face": "storage",
+			"look": {"shirt": "#3f7fb0", "dress": true},
+			"conversations": [
+				{"conversation": "ch4_aline_supplies", "if": [{"objective": "ch4_main:supply"}]},
+				{"conversation": "ch4_aline"}
+			]
+		},
+		"gasana": {
+			"name": "Gasana", "spot": "gasana_s", "face": "storage",
+			"look": {"shirt": "#5b7d4a", "pants": "#4a3f30", "hat": true},
+			"conversations": [{"conversation": "ch4_gasana"}]
+		},
+		"solange": {
+			"name": "Solange", "spot": "solange_s", "face": "storage",
+			"look": {"shirt": "#6a8fb0", "dress": true, "headwrap": true, "headwrap_color": "#d0c090"},
+			"conversations": [{"conversation": "ch4_solange"}]
+		},
+		"claudine": {
+			"name": "Claudine", "spot": "claudine_s", "face": "storage",
+			"look": {"shirt": "#c4a23a", "dress": true, "headwrap": true, "headwrap_color": "#a83a2a"},
+			"conversations": [{"conversation": "ch4_claudine"}]
+		},
+		"eric": {
+			"name": "Eric", "spot": "eric_s", "face": "storage", "voice": "child",
+			"look": {"shirt": "#4a8a5a", "pants": "#2a2a2a", "body_scale": 0.6}
+		},
+		"beata": {
+			"name": "Mama Beata", "spot": "beata_outside", "yaw": 0.0,
+			"look": {"shirt": "#d9822b", "dress": true, "headwrap": true, "headwrap_color": "#2f6b4f"},
+			"conversations": [
+				{"conversation": "ch4_beata", "if": [{"objective": "ch4_main:beata"}]},
+				{"conversation": "ch4_beata_wait"}
+			]
+		},
+		"patrick": {
+			"name": "Patrick", "spot": "patrick_gate", "yaw": 3.14159,
+			"look": {"shirt": "#5a5a7a", "pants": "#2c2c30"}
+		},
+		"man_1": {"name": "Man", "spot": "man_1", "yaw": 3.14159, "voice": "patrol", "look": {"shirt": "#2e2e2e", "pants": "#1e1e22"}},
+		"man_2": {"name": "Man", "spot": "man_2", "yaw": 3.14159, "voice": "patrol", "look": {"shirt": "#3a3428", "pants": "#1e1e22", "hat": true}}
+	},
+
+	"watchers": [
+		{"route": [[-11, 16.5], [11, 16.5]], "view": 13.0, "barks": ["Every house. Every room.", "Who's awake in there?"]}
+	]
+}

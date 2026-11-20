@@ -1,0 +1,91 @@
+{
+	"ch6_opening": [
+		{"speaker": "narrator", "text": "Emmanuel wakes before the others. Vestine has not come back with the water she promised. Outside, in the soft earth by the door, there are footprints. Many of them."},
+		{"speaker": "aline", "text": "Emmanuel. I heard voices in the night, outside the house. Men, walking round and round it. And one of them..."},
+		{"speaker": "aline", "text": "One of them sounded like Patrick."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"Patrick? Here? He wouldn't—\"", "goto": "doubt"},
+			{"text": "\"Then he knows where we are.\"", "goto": "fear", "do": [{"set_flag": "ch6_suspected_patrick"}]}
+		]},
+		{"id": "doubt", "speaker": "aline", "text": "Wouldn't he? After everything?", "do": [{"set_flag": "ch6_suspected_patrick"}], "goto": "end"},
+		{"id": "fear", "speaker": "aline", "text": "Somebody does."},
+		{"id": "end", "speaker": "emmanuel", "text": "Keep everyone inside and quiet. I'll look around.",
+		 "do": [{"start_mission": "ch6_main"}], "end": true}
+	],
+
+	"ch6_aline": [
+		{"speaker": "aline", "text": "Be quick. Every minute we stay here is a minute too long.", "end": true}
+	],
+	"ch6_group": [
+		{"speaker": "narrator", "text": "Nobody speaks. Everyone is listening to the path.", "end": true}
+	],
+
+	"ch6_clue_prints": [
+		{"speaker": "narrator", "text": "Footprints circle the house, right up to the walls. Bare feet and boots. They stood here in the dark and listened, and then they went away to fetch others.",
+		 "do": [{"set_flag": "ch6_clue_prints"}, {"progress": "ch6_main:clues"}], "end": true}
+	],
+	"ch6_clue_jug": [
+		{"speaker": "narrator", "text": "Vestine's water jug lies on its side in the path, the water soaked into the earth. She dropped it and did not come back for it.",
+		 "do": [{"set_flag": "ch6_clue_jug"}, {"progress": "ch6_main:clues"}], "end": true}
+	],
+	"ch6_clue_page": [
+		{"speaker": "narrator", "text": "In the trampled grass, a page torn from a notebook. A list of houses, one after another. At the bottom, in fresh ink: 'empty houses by the marsh'."},
+		{"speaker": "emmanuel", "text": "The same kind of book Gasana told me about. They are still writing things down.",
+		 "do": [{"set_flag": "ch6_clue_page"}, {"progress": "ch6_main:clues"}], "end": true}
+	],
+
+	"ch6_vestine_early": [
+		{"speaker": "narrator", "text": "Someone is crying, very quietly, in the long grass.", "end": true}
+	],
+
+	"ch6_vestine": [
+		{"speaker": "narrator", "text": "Vestine is curled in the long grass behind the ruined house, her hands over her face."},
+		{"speaker": "vestine", "text": "I'm sorry. I'm so sorry. They came to my house in the night. They knew I was carrying water to someone."},
+		{"speaker": "vestine", "text": "They had my children in the yard. They said if I didn't show them where, my children would be next. So I showed them the path.",
+		 "text_reduced": "They threatened my children. So I showed them the path."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"You were protecting your children.\"", "goto": "forgive", "do": [{"set_flag": "ch6_vestine_response", "value": "understood"}]},
+			{"text": "\"You led them straight to us.\"", "goto": "blame", "do": [{"set_flag": "ch6_vestine_response", "value": "blamed"}]},
+			{"text": "\"Come with us. Bring your children.\"", "goto": "come", "do": [{"set_flag": "ch6_vestine_response", "value": "invited"}]}
+		]},
+		{"id": "forgive", "speaker": "vestine", "text": "That doesn't make it right. I know that. I will know it for the rest of my life.", "goto": "patrick"},
+		{"id": "blame", "speaker": "vestine", "text": "I know. I know I did.", "goto": "patrick"},
+		{"id": "come", "speaker": "vestine", "text": "They are watching my house. If I run, they will know. I have to go back to them."},
+		{"id": "patrick", "speaker": "vestine", "text": "The one who asked me, the one who knew your names, was young. Your age. The others called him Patrick. He went towards the old school."},
+		{"speaker": "vestine", "text": "Go. Before the rest of them come back.",
+		 "do": [{"set_flag": "ch6_heard_vestine"}, {"progress": "ch6_main:vestine"}], "end": true}
+	],
+
+	"ch6_vestine_after": [
+		{"speaker": "vestine", "text": "Go. Please.", "end": true}
+	],
+
+	"ch6_patrick": [
+		{"speaker": "narrator", "text": "Patrick is alone on the steps of the old school, a torch still in his hand from the night. He looks as if he has not slept in weeks."},
+		{"speaker": "patrick", "text": "Emmanuel. I knew it. I knew you'd be with them."},
+		{"speaker": "patrick", "text": "You told me no, that day at the football field. You were the only one who did.", "if": [{"flag": "ch2_stance", "equals": "refuse"}]},
+		{"speaker": "patrick", "text": "You said you would think about it. You never came.", "if": [{"flag": "ch2_stance", "equals": "pretend"}]},
+		{"speaker": "emmanuel", "text": "We grew up together. How can you help them hurt people?"},
+		{"speaker": "patrick", "text": "You don't understand! They threatened us. They said we'd be next!"},
+		{"speaker": "emmanuel", "text": "Fear explains what happened to you. It doesn't excuse what you've done to others."},
+		{"speaker": "patrick", "text": "What am I supposed to do now?"},
+		{"speaker": "emmanuel", "text": "Stop hurting people. If you can, help them. Face what you've done."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"Tell them we went north.\"", "goto": "north", "do": [{"set_flag": "ch6_asked_patrick"}]},
+			{"text": "[Turn your back on him and walk away.]", "goto": "walk", "do": [{"set_flag": "ch6_walked_away"}]}
+		]},
+		{"id": "north", "speaker": "patrick", "text": "I can't promise you anything. I can't even promise myself anything any more.", "goto": "end"},
+		{"id": "walk", "speaker": "narrator", "text": "Emmanuel turns his back on him. Behind him, Patrick does not call out."},
+		{"id": "end", "speaker": "narrator", "text": "Whistles on the far side of the hamlet. Voices. The search is starting again.",
+		 "do": [{"progress": "ch6_main:confront"}], "end": true}
+	],
+
+	"ch6_escape": [
+		{"speaker": "aline", "text": "They're coming back. Everyone, with Emmanuel. Low, and quiet.", "end": true}
+	],
+
+	"ch6_end": [
+		{"speaker": "narrator", "text": "They run until the voices are far behind them, down through the papyrus, towards the sound of moving water."},
+		{"speaker": "aline", "text": "Is everyone here? Count them, Emmanuel. Count them again.", "end": true}
+	]
+}

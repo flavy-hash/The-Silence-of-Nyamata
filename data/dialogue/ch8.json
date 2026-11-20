@@ -1,0 +1,120 @@
+{
+	"ch8_arrival": [
+		{"speaker": "narrator", "text": "The road into the village is the same road. The hills are the same hills. Nothing else is the same."},
+		{"speaker": "aline", "text": "It's so quiet. I used to think this village was never quiet.", "do": [{"start_mission": "ch8_main"}], "end": true}
+	],
+
+	"ch8_aline": [
+		{"speaker": "aline", "text": "I'm here. Take as long as you need.", "end": true}
+	],
+
+	"ch8_beata": [
+		{"speaker": "beata", "text": "Emmanuel. Aline. You came back. You both came back."},
+		{"speaker": "emmanuel", "text": "Mama Beata. My father..."},
+		{"speaker": "beata", "text": "Sit down, Emmanuel. Sit with me."},
+		{"speaker": "beata", "text": "Your father did not survive. They came back the morning after you left, as they said they would. He never told them where you had gone. Not one word.",
+		 "text_reduced": "Your father did not survive. He never told them where you had gone."},
+		{"speaker": "narrator", "text": "Emmanuel does not hear what she says next. Aline takes his hand, and does not let go."},
+		{"speaker": "beata", "text": "There is someone here who has been waiting for you, Aline.", "do": [{"event": "ch8_olivier"}]},
+		{"speaker": "narrator", "text": "A boy steps out from behind the counter. He is thinner, and he is wearing one mended sandal. Aline is carrying the other.", "if": [{"flag": "ch3_found_sandal"}]},
+		{"speaker": "narrator", "text": "A boy steps out from behind the counter, thinner than before, blinking at the light.", "if": [{"not_flag": "ch3_found_sandal"}]},
+		{"speaker": "aline", "text": "Olivier!"},
+		{"speaker": "olivier", "text": "Mama Beata hid me in the roof. For weeks. I was very quiet, Aline. Like you told me."},
+		{"speaker": "beata", "text": "He was. Quieter than any of us."},
+		{"speaker": "beata", "text": "In the end I hid eleven people. In the roof, behind the sacks, under the floor of the storeroom. Madame Uwase was one of them. Not everyone I tried to hide lived."},
+		{"speaker": "beata", "text": "Some people have come out of the marsh these last weeks. Not all of them. We are still searching, every day, for the ones who were with you.", "if": [{"flag": "ch7_group_separated"}]},
+		{"speaker": "beata", "text": "Go and see the village, Emmanuel. Go to your father's house. Then come to the square. People are gathering there.",
+		 "do": [{"progress": "ch8_main:beata"}], "end": true}
+	],
+
+	"ch8_beata_after": [
+		{"speaker": "beata", "text": "Go on. I'll be in the square.", "end": true}
+	],
+
+	"ch8_olivier": [
+		{"speaker": "olivier", "text": "Aline says you looked for me. In the dark. Thank you, Emmanuel.", "end": true}
+	],
+
+	"ch8_home": [
+		{"speaker": "narrator", "text": "The door of Joseph's house hangs from one hinge. Inside, the cupboard still stands across the doorway of the storage room."},
+		{"speaker": "narrator", "text": "Emmanuel lays flowers on the step where his father used to sit in the evenings with the radio."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"You never told them anything, Papa.\"", "goto": "told"},
+			{"text": "\"Quietly, and together. We did it the way you said.\"", "goto": "together"},
+			{"text": "[Sit on the step for a while.]", "goto": "sit"}
+		]},
+		{"id": "told", "speaker": "emmanuel", "text": "Not one word. Mama Beata said. You kept us all alive with silence.", "goto": "end"},
+		{"id": "together", "speaker": "emmanuel", "text": "We opened the door when someone knocked. Like you asked me to.", "goto": "end"},
+		{"id": "sit", "speaker": "narrator", "text": "Emmanuel sits on the step for a long time. Aline sits beside him and says nothing at all."},
+		{"id": "end", "do": [{"set_flag": "ch8_visited_home"}, {"progress": "ch8_main:remember"}], "end": true}
+	],
+
+	"ch8_uwase": [
+		{"speaker": "uwase", "text": "Emmanuel. Mama Beata told me you were alive. I made her say it three times."},
+		{"speaker": "uwase", "text": "The school has no roof, no benches, no books. And so many of my pupils will never come back."},
+		{"speaker": "uwase", "text": "But the ones who do will need teachers. Two of us, perhaps."},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"I'll teach with you.\"", "goto": "yes", "do": [{"set_flag": "ch8_will_teach"}]},
+			{"text": "\"I don't know if I can.\"", "goto": "unsure"}
+		]},
+		{"id": "yes", "speaker": "uwase", "text": "Then we start with what is true. Children will have to learn it from us, not from a radio.", "goto": "end"},
+		{"id": "unsure", "speaker": "uwase", "text": "Nobody knows if they can. They do it anyway. That is what courage looks like most days."},
+		{"id": "end", "do": [{"set_flag": "ch8_visited_school"}, {"progress": "ch8_main:remember"}], "end": true}
+	],
+
+	"ch8_uwase_after": [
+		{"speaker": "uwase", "text": "Come back tomorrow. We'll start with the benches.", "end": true}
+	],
+
+	"ch8_hill": [
+		{"speaker": "narrator", "text": "From the hilltop, the village looks almost the way it did. Almost."},
+		{"speaker": "aline", "text": "We survived. But survival isn't the same as healing."},
+		{"speaker": "emmanuel", "text": "Then we have to start healing. And remember those who didn't come home."},
+		{"speaker": "aline", "text": "Do you remember what you promised me? Up here?"},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"That I'd become a teacher.\"", "goto": "teacher"},
+			{"text": "\"I remember everything about that day.\"", "goto": "everything"}
+		]},
+		{"id": "teacher", "speaker": "aline", "text": "And I'll become a doctor. It's still a promise. It's still ours.", "goto": "end"},
+		{"id": "everything", "speaker": "aline", "text": "So do I. That's why it hurts. That's why it matters."},
+		{"id": "end", "do": [{"set_flag": "ch8_visited_hill"}, {"progress": "ch8_main:remember"}], "end": true}
+	],
+
+	"ch8_ball": [
+		{"speaker": "narrator", "text": "The old football lies in the grass at the edge of the pitch, flat and split. Someone will need to find a new one. And a pump.", "end": true}
+	],
+
+	"ch8_claudine": [
+		{"speaker": "claudine", "text": "Eric has started talking again. Mostly about you, and the river. He says you were very brave and very wet.", "end": true}
+	],
+	"ch8_eric": [
+		{"speaker": "child", "text": "Emmanuel! You still owe me a story. The hare and the hyena.", "end": true}
+	],
+	"ch8_gasana": [
+		{"speaker": "gasana", "text": "My beans have come up on their own, would you believe it? The field didn't know anything had happened. I'm going to need help with the sacks.", "end": true}
+	],
+	"ch8_solange": [
+		{"speaker": "solange", "text": "My mother is alive. She's in a camp near the border. I leave tomorrow to bring her home.", "end": true}
+	],
+	"ch8_innocent": [
+		{"speaker": "innocent", "text": "My leg still aches when it rains. Every time it does, I think: someone stopped.", "end": true}
+	],
+
+	"ch8_memorial": [
+		{"speaker": "narrator", "text": "In the square, people have started to gather stones. A low wall, flowers, candles in tins. Names written on scraps of paper, held down with pebbles."},
+		{"speaker": "beata", "text": "Rebuilding takes more than walls. It takes patience, truth, and people willing to stand beside each other."},
+		{"speaker": "emmanuel", "text": "I will teach. I will tell their stories. I will not let hatred be the lesson."},
+		{"speaker": "narrator", "text": "Emmanuel writes his father's name on a scrap of paper. Joseph. He holds it down with a stone from the yard where Joseph would not open the gate."},
+		{"speaker": "narrator", "text": "Beside it, Aline writes another name. Gasana. He lived through the river; the fever took him weeks later, in the camp.", "if": [{"flag": "ch8_lost_gasana"}]},
+		{"speaker": "narrator", "text": "And another, for the man beside the path who thought no one would stop. Innocent. His brother never came back for him.", "if": [{"flag": "ch8_lost_innocent"}]},
+		{"speaker": "aline", "text": "What will you do now, Emmanuel? Tomorrow. Where do we start?"},
+		{"speaker": "emmanuel", "choices": [
+			{"text": "\"The school. Every bench, every book.\"", "goto": "end", "do": [{"set_flag": "ch8_rebuild", "value": "school"}]},
+			{"text": "\"The health post, with you.\"", "goto": "end", "do": [{"set_flag": "ch8_rebuild", "value": "clinic"}]},
+			{"text": "\"Homes, for the families who come back.\"", "goto": "end", "do": [{"set_flag": "ch8_rebuild", "value": "homes"}]},
+			{"text": "\"A garden here, around the names, so they are never alone.\"", "goto": "end", "do": [{"set_flag": "ch8_rebuild", "value": "garden"}]}
+		]},
+		{"id": "end", "speaker": "beata", "text": "Then begin tomorrow. And not alone.",
+		 "do": [{"progress": "ch8_main:memorial"}], "end": true}
+	]
+}
